@@ -1,0 +1,13 @@
+{
+    "id": "ae85eb4f-f1d8-478a-ac3d-c93c168fdc86",
+    "description": "A simple try to replace an existing mouthpiece of an Irish Whistle.",
+    "title": "tinwhistle",
+    "url": "https://github.com/loic-fejoz/loic-fejoz-fabmoments/tree/master/tinwhistle",
+    "author": "Loïc Fejoz",
+    "license": "MIT",
+    "tags": ["whistle", "3Dprint", "3D"],
+    "metadata": {
+	"created": "2014-12-22T17:01:00.0Z",
+	"updated": "2014-12-22T17:01:00.0Z"
+    }
+}
