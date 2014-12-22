@@ -1,4 +1,7 @@
-loic-fejoz-fabmoments
-=====================
+FabMoments of Loïc Fejoz
+========================
 
-My personal FabMoments
+A repositories of various thing, [I](http://www.fejoz.net) am building.
+
+* [Tin Whisthle](tinwhistle)
+
