@@ -7,4 +7,4 @@ I should definitively read more of [Guido Gonzato Whisthles](http://www.ggwhistl
 
 ![A screenshot of the mouthpiece](tinwhistle.png?raw=true)
 
-See other of [my FabMoments](..).
+See other of [my FabMoments](https://github.com/loic-fejoz/loic-fejoz-fabmoments/tree/master/).
