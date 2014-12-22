@@ -1,7 +1,7 @@
 Tin whistle
 ===========
 
-A simple try to replace an existing mouthpiece of an Irish Whistle.
+A simple try to replace an existing mouthpiece of an [Irish Whistle](http://en.wikipedia.org/wiki/Tin_whistle).
 
 I should definitively read more of [Guido Gonzato Whisthles](http://www.ggwhistles.com/) to get even better results.
 
