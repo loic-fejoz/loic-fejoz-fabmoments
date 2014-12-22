@@ -1,13 +1,15 @@
 {
     "updated": "2014-12-22T17:01:00.0Z",
     "description": "Thing tracker dedicated to FabMoments of Loïc Fejoz.",
-    "url": "https://github.com/loic-fejoz/loic-fejoz-fabmoments/blob/master/thingtracker.json?raw=true",
+    "url": "https://raw.githubusercontent.com/loic-fejoz/loic-fejoz-fabmoments/master/thingtracker.json",
     "thingsCount": 1,
     "things": [
 	{
 	    "id": "ae85eb4f-f1d8-478a-ac3d-c93c168fdc86",
 	    "title": "tinwhistle",
-	    "refUrl": "https://github.com/loic-fejoz/loic-fejoz-fabmoments/tree/master/tinwhistle/thingtracker.json?raw=true"
+	    "author": "Loïc Fejoz",
+	    "url": "https://github.com/loic-fejoz/loic-fejoz-fabmoments/tree/master/tinwhistle",
+	    "refUrl": "https://raw.githubusercontent.com/loic-fejoz/loic-fejoz-fabmoments/master/tinwhistle/thingtracker.json"
 	}
     ]
 }
