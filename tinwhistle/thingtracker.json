@@ -5,7 +5,7 @@
     "url": "https://github.com/loic-fejoz/loic-fejoz-fabmoments/tree/master/tinwhistle",
     "author": "Loïc Fejoz",
     "license": "MIT",
-    "tags": ["whistle", "3Dprint", "3D"],
+    "tags": ["whistle", "3Dprint", "3D", "openscad"],
     "metadata": {
 	"created": "2014-12-22T17:01:00.0Z",
 	"updated": "2014-12-22T17:01:00.0Z"
