@@ -15,6 +15,13 @@ Download the [OpenSCAD source](tinwhistle.scad?raw=true), [STL](tinwhistle.stl?r
 
 See other of [my FabMoments](https://github.com/loic-fejoz/loic-fejoz-fabmoments/tree/master/).
 
+License
+-------
+
+STL and Photos are under the [Creative Commons Attribution 3.0 France](https://creativecommons.org/licenses/by/3.0/fr/) (CC BY 3.0 FR - Loïc Fejoz).
+
+OpenSCAD Model is under the [MIT License](http://opensource.org/licenses/MIT).
+
 Gallery
 -------
 
