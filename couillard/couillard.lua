@@ -129,7 +129,8 @@ function counterweight()
    local height = 3 * width
    local angle = 30
    local radius = 30
-   local pie = rounded_pie_sector(radius, angle, height, 3)
+   local small_radius = 3
+   local pie = rounded_pie_sector(radius, angle, height, small_radius)
    local virtual_hinge_length = 2 * pie.height
    local c = difference{
       pie,
@@ -141,6 +142,8 @@ function counterweight()
    result.height = height
    result.center = center
    result.width = 2 * sin(angle/2) * radius
+   result.angle = angle
+   result.small_radius = small_radius
    return result
 end
 
@@ -154,8 +157,8 @@ function print3d()
 	    translate(0, -width, 0) * hinge(),
 	    translate(0, -2*width, 0) * hinge(),
 	    translate(0, -3*width, 0) * hinge(),
-	    translate(10, c1.width, c1.height/2) * c1,
-	    translate(10, c1.width + c2.width + hole_tolerance, c2.height/2) * c2,
+	    translate(10, c1.height, 0) * rotate(-90, 0, 0) * translate(0, -c1.small_radius, c1.height/2) * rotate(0, 0, c1.angle/2) *  c1,
+	    translate(10, c1.height + c2.height + 1, 0) * rotate(-90, 0, 0) * translate(0, -c2.small_radius, c2.height/2) * rotate(0, 0, c2.angle/2) * c2,
       })
 end
 
