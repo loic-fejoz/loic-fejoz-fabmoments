@@ -6,6 +6,8 @@ A simple try to replace an existing mouthpiece of an [Irish Whistle](http://en.w
 
 I should definitively read more of [Guido Gonzato Whisthles](http://www.ggwhistles.com/) to get even better results.
 
+Following mouthpieces have been 3D printed on my own [FoldaRap](http://reprap.org/wiki/FoldaRap/fr).
+
 Source
 ------
 
