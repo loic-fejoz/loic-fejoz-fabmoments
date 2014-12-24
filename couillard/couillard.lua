@@ -36,7 +36,45 @@ small_part_length = center_proportion * verge_length / cos(split_angle) + width/
 big_part_length = (1-center_proportion) * verge_length - delta
 hole_radius = hinge_radius + hole_tolerance
 
-dofile('IcestoneSL.lua')
+-- dofile('IcestoneSL.lua')
+--================================ from IcestoneSL =======================================================================
+----
+-- pie_sector(r, a, h) creates a shape that fits into a cylinder of radius r and heigh h, and has angle a.
+-- The sector is aligned on the X axis. The end is at the origin. It lies on floor.
+-- @return a pie sector
+function pie_sector(radius, angle, height)
+   local box_width = 3 * radius
+   return difference{
+      cylinder(radius, height),
+      rotate(0, 0, -angle/2) * translate(0, box_width/2, height/2) * scale(box_width, box_width, 2 * height) * box(1),
+      rotate(0, 0, angle/2) * translate(0, -box_width/2, height/2) * scale(box_width, box_width, 2 * height) * box(1)
+   }
+end
+
+----
+-- pie_sector(r, a, h) creates a shape that fits into a cylinder of radius r and heigh h, and has angle a.
+-- The sector is aligned on the X axis. The end is at the origin. It lies on floor.
+-- The resulting shape has attribute small_center that provides the center of the small circle.
+-- @return a pie sector
+function rounded_pie_sector(radius, angle, height, small_radius)
+   local delta = small_radius / sin(angle/2)
+   local l = small_radius/tan(radius/2)
+   local small_center = v(-delta, 0, 0)
+   local result = difference{
+      pie_sector(radius, angle, height),
+      difference{
+	 translate(-l/2, 0, height/2) * scale(l, l, 2 * height) * box(1),
+	 translate(-delta, 0, -height/2) * cylinder(small_radius, 2 * height)
+      }
+   }
+   result.small_center = small_center
+   result.height = height
+   result.radius = radius
+   result.small_radius = small_radius
+   result.angle = angle
+   return result
+end
+--====================================================================================================================
 
 function two_arms()
    return union({
@@ -65,16 +103,20 @@ function verge()
       scale(width, small_part_length , width) * box(1),
       translate(0, -small_part_length/2 + 2 * hinge_radius, 0) * rotate(0, 90, 0) * translate(0, 0, -virtual_hinge_length/2) *  cylinder(hole_radius, virtual_hinge_length), -- counterweight holes
    }
-   result = union{difference{
+   local left_transfo = translate(-width/2, width/2, 0) * rotate(0, 0, -split_angle) * translate(-width/2, width/tan(split_angle)-small_part_length/2, 0)
+   local right_transfo = translate(width/2, width/2, 0) * rotate(0, 0, split_angle) * translate(width/2, width/tan(split_angle)-small_part_length/2, 0)
+   local result = union{difference{
       union{
-	 translate(width/2, width/2, 0) * rotate(0, 0, split_angle) * translate(width/2, width/tan(split_angle)-small_part_length/2, 0) * part, -- right part
-	 translate(-width/2, width/2, 0) * rotate(0, 0, -split_angle) * translate(-width/2, width/tan(split_angle)-small_part_length/2, 0) * part, -- left part
+	 right_transfo * part, -- right part
+	 left_transfo * part, -- left part
 	 translate(0, delta + big_part_length/2, 0) * scale(width, big_part_length, width) * box(1), -- longer part
       },
       translate(-virtual_hinge_length/2, 0, 0) * rotate(0,90,0) * cylinder(hole_radius, virtual_hinge_length), -- main axis
       translate(-virtual_hinge_length/2, big_part_length + delta - 2 * hinge_radius, 0) * rotate(0,90,0) * cylinder(hole_radius, virtual_hinge_length), -- sling hole
 			    },
    }
+   result.left_center = left_transfo *  v(0, -small_part_length/2 + 2 * hinge_radius, 0)
+   result.right_center = right_transfo *  v(0, -small_part_length/2 + 2 * hinge_radius, 0)
    return result
 end
 
@@ -109,26 +151,27 @@ function print3d()
       union({
 	    handle(translate(-total_height/2, 0, 0) * support()),
 	    handle(translate(sin(split_angle) * small_part_length, 0, width/2) * verge()),
-	    translate(width, 0, 0) * rotate(0, 0, 90) * hinge(),
+	    translate(0, -width, 0) * hinge(),
+	    translate(0, -2*width, 0) * hinge(),
+	    translate(0, -3*width, 0) * hinge(),
 	    translate(10, c1.width, c1.height/2) * c1,
 	    translate(10, c1.width + c2.width + hole_tolerance, c2.height/2) * c2,
       })
 end
 
 function mounted()
+   local v = verge()
+   local verge_transfo = translate(0, 0, total_height-width/2)
    return scale(1) *
       union({
 	    support(),
-	    translate(0, 0, total_height-width/2) * verge(),
+	    translate(0, 0, total_height-width/2) * v,
 	    translate(0, 0, total_height-width/2) * hinge(),
-	    translate(0, 0, 0) * rotate(0, -90, split_angle) * counterweight()
+	    verge_transfo * translate(v.left_center) * rotate(0, -90, -split_angle) * counterweight(), -- left
+	    verge_transfo * translate(v.right_center) * rotate(0, -90, split_angle) * counterweight(), -- right
+	    -- counterweight hinges are not displayed
       })
 end
 
 emit(print3d(), 0)
 --emit(mounted(), 0)
---emit(translate(0, (verge_length/2) - (center_proportion*verge_length), width/2) * scale(width, verge_length, width) * box(1), 1)
---emit(translate(0,0,50) * scale(1,1,100) * box(1), 0)
---emit(translate(0,50,0) * scale(1,100,1) * box(1), 0)
---emit(translate(50,0,0) * scale(100,1,1) * box(1), 0)
---emit(counterweight(), 1)
