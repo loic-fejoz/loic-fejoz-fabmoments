@@ -105,15 +105,17 @@ function verge()
    }
    local left_transfo = translate(-width/2, width/2, 0) * rotate(0, 0, -split_angle) * translate(-width/2, width/tan(split_angle)-small_part_length/2, 0)
    local right_transfo = translate(width/2, width/2, 0) * rotate(0, 0, split_angle) * translate(width/2, width/tan(split_angle)-small_part_length/2, 0)
-   local result = union{difference{
-      union{
-	 right_transfo * part, -- right part
-	 left_transfo * part, -- left part
-	 translate(0, delta + big_part_length/2, 0) * scale(width, big_part_length, width) * box(1), -- longer part
+   local result =union{
+      difference{
+	 union{
+	    right_transfo * part, -- right part
+	    left_transfo * part, -- left part
+	    translate(0, delta + big_part_length/2, 0) * scale(width, big_part_length, width) * box(1), -- longer part
+	 },
+	 translate(-virtual_hinge_length/2, 0, 0) * rotate(0,90,0) * cylinder(hole_radius, virtual_hinge_length), -- main axis hole
+	 translate(-virtual_hinge_length/2, big_part_length + delta - 2 * hinge_radius, 0) * rotate(0,90,0) * cylinder(hole_radius, virtual_hinge_length), -- sling hole,
+	 scale(width + 2*hole_tolerance, 2 * delta, 2 * delta) * box(1) -- spaces to let the verge rotates
       },
-      translate(-virtual_hinge_length/2, 0, 0) * rotate(0,90,0) * cylinder(hole_radius, virtual_hinge_length), -- main axis
-      translate(-virtual_hinge_length/2, big_part_length + delta - 2 * hinge_radius, 0) * rotate(0,90,0) * cylinder(hole_radius, virtual_hinge_length), -- sling hole
-			    },
    }
    result.left_center = left_transfo *  v(0, -small_part_length/2 + 2 * hinge_radius, 0)
    result.right_center = right_transfo *  v(0, -small_part_length/2 + 2 * hinge_radius, 0)
