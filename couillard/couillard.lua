@@ -24,8 +24,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 -- @see https://en.wikipedia.org/wiki/Couillard
 
 hole_tolerance=0.22
-width=3
-total_height=60
+width=5
+total_height=50
 verge_length=2.5 * total_height
 center_proportion = 0.33 --%
 split_angle=15
@@ -35,6 +35,7 @@ delta =  1.5*width
 small_part_length = center_proportion * verge_length / cos(split_angle) + width/tan(split_angle) + width/2
 big_part_length = (1-center_proportion) * verge_length - delta
 hole_radius = hinge_radius + hole_tolerance
+arm_angle = 45
 
 -- dofile('IcestoneSL.lua')
 --================================ from IcestoneSL =======================================================================
@@ -78,8 +79,8 @@ end
 
 function two_arms()
    return union({
-	 translate(0, cos(45) * (width + arm_length/2), sin(45) * arm_length/2) * rotate(45, 0, 0) * translate(0, 0, width) * scale(width, width, arm_length) * box(1),
-	 translate(0, -cos(45) * (width + arm_length/2), sin(45) * arm_length/2) * rotate(-45, 0, 0) * translate(0, 0, width) * scale(width, width, arm_length) * box(1),
+	 translate(0, cos(arm_angle) * (width+arm_length/2), sin(arm_angle) * (arm_length/2)) * rotate(arm_angle, 0, 0) * translate(0, 0, width) * scale(width, width, arm_length) * box(1),
+	 translate(0, -cos(arm_angle) * (width + arm_length/2), sin(arm_angle) * (arm_length/2)) * rotate(-arm_angle, 0, 0) * translate(0, 0, width) * scale(width, width, arm_length) * box(1),
    })
 end
 
@@ -124,7 +125,9 @@ end
 
 function hinge()
    real_hinge_length = 4 * width
-   return rotate(0, 90, 0) * translate(0, 0, -real_hinge_length/2) * cylinder(hinge_radius, real_hinge_length)
+   local result = rotate(0, 90, 0) * translate(0, 0, -real_hinge_length/2) * cylinder(hinge_radius, real_hinge_length)
+   result.radius = hinge_radius
+   return result
 end
 
 function counterweight()
@@ -150,17 +153,20 @@ function counterweight()
 end
 
 function print3d()
-   c1 = counterweight()
-   c2 = counterweight()
+   local c1 = counterweight()
+   local c2 = counterweight()
+   local h = hinge()
    return scale(1) *
       union({
-	    handle(translate(-total_height/2, 0, 0) * support()),
-	    handle(translate(sin(split_angle) * small_part_length, 0, width/2) * verge()),
-	    translate(0, -width, 0) * hinge(),
-	    translate(0, -2*width, 0) * hinge(),
-	    translate(0, -3*width, 0) * hinge(),
-	    translate(10, c1.height, 0) * rotate(-90, 0, 0) * translate(0, -c1.small_radius, c1.height/2) * rotate(0, 0, c1.angle/2) *  c1,
-	    translate(10, c1.height + c2.height + 1, 0) * rotate(-90, 0, 0) * translate(0, -c2.small_radius, c2.height/2) * rotate(0, 0, c2.angle/2) * c2,
+	    handle('support', translate(-total_height/2, 0, 0) * support()),
+	    handle('verge', translate(sin(split_angle) * small_part_length, 0, width/2) * verge()),
+	    handle('hinges', union{
+		      translate(-10, -width, h.radius) * h,
+		      translate(-10, -2*width, h.radius) * h,
+		      translate(-10, -3*width, h.radius) * h,
+	    }),
+	    handle('counter_weight1', translate(1.1*width, c1.height, 0) * rotate(-90, 0, 0) * translate(0, -c1.small_radius, c1.height/2) * rotate(0, 0, c1.angle/2) *  c1),
+	    handle('counter_weight2', translate(1.1*width, c1.height + c2.height + 1, 0) * rotate(-90, 0, 0) * translate(0, -c2.small_radius, c2.height/2) * rotate(0, 0, c2.angle/2) * c2),
       })
 end
 
@@ -178,5 +184,5 @@ function mounted()
       })
 end
 
-emit(print3d(), 0)
---emit(mounted(), 0)
+--emit(print3d(), 0)
+emit(mounted(), 0)
