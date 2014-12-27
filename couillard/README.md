@@ -1,7 +1,7 @@
 Couillard
 =========
 
-An attempt to build a couillard, ie a kind of trebuchet.
+An attempt to build a [couillard](https://en.wikipedia.org/wiki/Couillard), ie a kind of [trebuchet](https://en.wikipedia.org/wiki/Trebuchet).
 
 It is also my first model from scratch written for [IceSL](http://www.loria.fr/~slefebvr/icesl/). IceSL is a kind of OpenSCAD and Slic3r mixed but were model are written in Lua. It is very pleasant to write.
 
