@@ -1,0 +1,14 @@
+{
+    "id": "6badf403-c166-4709-b090-edb1e182d2a7",
+    "description": "An attemps to build a couillard, ie a kind of trebuchet.",
+    "title": "Couillard",
+    "url": "https://github.com/loic-fejoz/loic-fejoz-fabmoments/tree/master/couillard",
+    "thumbnailURL": "couillard-thumbnail.jpg",
+    "author": "Loïc Fejoz",
+    "license": "MIT",
+    "tags": ["trebuchet", "3Dprint", "3D", "IceSL"],
+    "metadata": {
+	"created": "2014-12-27T10:01:00.0Z",
+	"updated": "2014-12-27T10:01:00.0Z"
+    }
+}
