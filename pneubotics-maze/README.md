@@ -10,7 +10,7 @@ It will be displayed in a movie theater along with the film Big Hero 6 to [expla
 Source
 ------
 
-Download the [SVG source](pneubotics-maze-1.svg?raw=true) of the maze, or [fork on github](https://github.com/loic-fejoz/loic-fejoz-fabmoments/tree/master/pneubotics-maze).
+Download the [SVG source](pneubotics-maze-1.svg) of the maze, or [fork on github](https://github.com/loic-fejoz/loic-fejoz-fabmoments/tree/master/pneubotics-maze).
 
 See other of [my FabMoments](https://github.com/loic-fejoz/loic-fejoz-fabmoments/tree/master/).
 
