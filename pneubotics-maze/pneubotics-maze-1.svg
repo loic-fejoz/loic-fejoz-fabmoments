@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   x="0"
+   y="0"
+   width="130mm"
+   height="130mm"
+   viewBox="0 0 130 130"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.5 r10040"
+   sodipodi:docname="test-path.svg">
+  <title
+     id="title2990">Pneubotics-Maze</title>
+  <script
+     xlink:href=""
+     id="script2988" />
+  <defs
+     id="defs9" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1080"
+     inkscape:window-height="769"
+     id="namedview7"
+     showgrid="true"
+     units="mm"
+     inkscape:document-units="mm"
+     inkscape:zoom="0.51234189"
+     inkscape:cx="234.2186"
+     inkscape:cy="230.31496"
+     inkscape:window-x="595"
+     inkscape:window-y="179"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid2986"
+       empspacing="5"
+       visible="true"
+       enabled="true"
+       snapvisiblegridlinesonly="true"
+       units="mm"
+       spacingx="5mm"
+       spacingy="5mm"
+       dotted="false" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>Pneubotics-Maze</dc:title>
+        <cc:license
+           rdf:resource="http://creativecommons.org/licenses/by/3.0/" />
+        <dc:date>2015-01-15</dc:date>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Loïc Fejoz</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:rights>
+          <cc:Agent>
+            <dc:title>Copyright (c) 2015 Loïc Fejoz</dc:title>
+          </cc:Agent>
+        </dc:rights>
+        <dc:identifier>https://github.com/loic-fejoz/loic-fejoz-fabmoments/blob/master/pneubotics-maze/pneubotics-maze-1.svg</dc:identifier>
+        <dc:publisher>
+          <cc:Agent>
+            <dc:title>Nybi.cc</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>maze</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+        <dc:description>Maze to cut and use over the pneubotics maze design in Nybi.cc</dc:description>
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/licenses/by/3.0/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:requires
+           rdf:resource="http://creativecommons.org/ns#Notice" />
+        <cc:requires
+           rdf:resource="http://creativecommons.org/ns#Attribution" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Cutting"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="matrix(1,0,0,-1,0,130)">
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 0,0 0,130 130,0 0,-130 z"
+       id="contour"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 5,5 0,70 25,0 0,30 -5,0 0,-25 -20,0 0,45 45,0 0,-70 -25,0 0,-25 5,0 0,20 25,0 0,25 20,0 0,5 -20,0 0,20 20,0 0,5 -20,0 0,20 45,0 0,-20 5,0 0,20 20,0 0,-45 -20,0 0,-5 20,0 0,-70 -45,0 0,45 20,0 0,-20 5,0 0,25 L 75,55 75,5 5,5 z"
+       id="internalpath"
+       inkscape:connector-curvature="0" />
+  </g>
+</svg>

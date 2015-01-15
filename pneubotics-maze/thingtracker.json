@@ -1,0 +1,14 @@
+{
+    "id": "a653ca5a-6cf6-44c2-8844-b16544068110",
+    "description": "An activity to support explanation to kids of what are the advantages of soft robots.",
+    "title": "Pneubotics Maze",
+    "url": "https://github.com/loic-fejoz/loic-fejoz-fabmoments/tree/master/pneubotics-maze",
+    "thumbnailURL": "pneubotics-maze-thumbnail.jpg",
+    "author": "Loïc Fejoz",
+    "license": "MIT, CC-BY 3.0",
+    "tags": ["lasercut", "pneubotics", "softrobot", "educational", "kid"],
+    "metadata": {
+	"created": "2015-01-14T10:01:00.0Z",
+	"updated": "2015-01-15T18:06:00.0Z"
+    }
+}

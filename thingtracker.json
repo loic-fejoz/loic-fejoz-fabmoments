@@ -1,5 +1,5 @@
 {
-    "updated": "2014-12-27T10:01:00.0Z",
+    "updated": "2015-01-15T18:06:00.0Z",
     "description": "Thing tracker dedicated to FabMoments of Loïc Fejoz.",
     "url": "https://raw.githubusercontent.com/loic-fejoz/loic-fejoz-fabmoments/master/thingtracker.json",
     "thingsCount": 2,
@@ -20,11 +20,22 @@
 	    "description": "An attemps to build a couillard, ie a kind of trebuchet.",
 	    "title": "Couillard",
 	    "url": "https://github.com/loic-fejoz/loic-fejoz-fabmoments/tree/master/couillard",
-	    "thumbnailURL": "couillard-thumbnail.jpg",
+	    "thumbnailURL": "https://raw.githubusercontent.com/loic-fejoz/loic-fejoz-fabmoments/master/couillard/couillard-thumbnail.jpg",
 	    "author": "Loïc Fejoz",
 	    "license": "MIT",
 	    "tags": ["trebuchet", "3Dprint", "3D", "IceSL"],
 	    "refUrl": "https://raw.githubusercontent.com/loic-fejoz/loic-fejoz-fabmoments/master/couillard/thingtracker.json"
+	},
+	{
+	    "id": "a653ca5a-6cf6-44c2-8844-b16544068110",
+	    "description": "An activity to support explanation to kids of what are the advantages of soft robots.",
+	    "title": "Pneubotics Maze",
+	    "url": "https://github.com/loic-fejoz/loic-fejoz-fabmoments/tree/master/pneubotics-maze",
+	    "thumbnailURL": "https://raw.githubusercontent.com/loic-fejoz/loic-fejoz-fabmoments/master/pneubotics-maze/pneubotics-maze-thumbnail.jpg",
+	    "author": "Loïc Fejoz",
+	    "license": "MIT, CC-BY 3.0",
+	    "tags": ["lasercut", "pneubotics", "softrobot", "educational", "kid"],
+	    "refUrl": "https://raw.githubusercontent.com/loic-fejoz/loic-fejoz-fabmoments/master/pneubotics-maze/thingtracker.json"
 	}
     ]
 }
