@@ -5,6 +5,9 @@ An attempt to use implicit surface feature of IceSL.
 
 [Gabriel's Horn](http://fr.wikipedia.org/wiki/Trompette_de_Gabriel) has equation r = c / z with r = (x^2 + y^2) and c a constant (5 in the screenshot).
 
+The main difficulty is to transform the surface equation to a signed distance function as required by [IceSL](http://www.loria.fr/~slefebvr/icesl/).
+So I tried to find the analytic distance function with the help of [Maxima](http://maxima.sourceforge.net/). It is usefull to find the derivative of the distance between a point and a point on the surface, but zeroing the derivative is quite unhelpfull. The final equation is quite long to read and translate to a OpenGL GLSL shader. Thus I finally try to use dichotomy to find the shortest distance between a point and the surface. It prooves sufficient but still have artifacts on display. It is correct for slicing.
+
 Source
 ------
 
