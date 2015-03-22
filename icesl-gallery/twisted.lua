@@ -21,12 +21,14 @@ IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ]]
 
--- Directely applied from http://www.iquilezles.org/www/articles/distfunctions/distfunctions.htm
+-- Directly applied from http://www.iquilezles.org/www/articles/distfunctions/distfunctions.htm
+-- See IceSL's forum for the trick to multiply distance by 0.1.
 h = 20
 twisted = implicit(v(-h,-h,0), v(h,h,2*h), [[
 float minDistanceSphereTracing=0.001;
 float distanceEstimator(vec3 ppp)
 {
+  precision highp float;
   // translate (0,0,18)
   vec3 pp = ppp - vec3(0,0,18);
   // Twist p to pp
@@ -37,7 +39,7 @@ float distanceEstimator(vec3 ppp)
   // Torus
   vec2 t = vec2(12.0, 6.0);
   vec2 q = vec2(length(p.xz)-t.x, p.y);
-  return length(q)-t.y;
+  return 0.1 * (length(q)-t.y);
 }
 ]])
 emit(twisted)

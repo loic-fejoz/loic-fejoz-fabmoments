@@ -47,7 +47,7 @@ float evalFunction(vec3 p)
 function horn(c)
    local c2 = 2 * c
    local glsl = [[
-float minDistanceSphereTracing=0.0001;
+float minDistanceSphereTracing=0.00001;
 float inTrompette(vec3 p)
 {
   vec3 p2 = p * p;
@@ -85,15 +85,15 @@ float distanceEstimator(vec3 p)
       }
     } while(oneMoreStep);
     if (p_radius < <CST_C> / p.z) {
-      return -dist;
+      return -0.1 * dist;
     }
-    return dist;
+    return 0.1 * dist;
   } else {
     if (p_radius < <CST_C>) {
-      return abs(p.z - 1);
+      return 0.1 * abs(p.z - 1);
     } else {
       cq = vec2(1.0, <CST_C>);
-      return length(cp - cq);
+      return 0.1 * length(cp - cq);
     }
   }
 }
