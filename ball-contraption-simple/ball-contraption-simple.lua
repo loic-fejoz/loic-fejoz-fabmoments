@@ -22,33 +22,48 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ]]
 
 function ball_trajectory(fall, radius, ball_radius)
-   ball =  union(
-      sphere(ball_radius),
-      translate(0,0, fall/2) * box(2*ball_radius, 2*ball_radius, fall)
-   )
-   trajectory = ball
-   for angle = 0, 360, 3 do
-      trajectory = union{
-	 trajectory,
-	 translate(
-	    radius * cos(angle),
-	    radius * sin(angle),
-	    angle / 360 * fall)
-	    * ball
-      }
-   end
-   return trajectory
+   outer_radius = radius + ball_radius
+   glsl = [[
+float minDistanceSphereTracing=0.01;
+float sdTorus( vec3 p, vec2 t )
+{
+  vec2 q = vec2(length(p.xy)-t.x,p.z);
+  return length(q)-t.y;
+}
+
+const vec2 torus = vec2(<CST_R>, <CST_BR>);
+
+float distanceEstimator(vec3 pp) 
+{
+  vec3 p;
+  float angle =  atan(pp.x, pp.y);
+  float new_z = pp.z - <CST_FALL> * angle;
+  if (new_z >= 0) {
+    p = vec3(pp.xy, 0);
+  } else {
+    p = vec3(pp.xy, new_z);
+  }
+
+  return sdTorus(p, torus);
+}
+
+]]
+   glsl = string.gsub(glsl, '<CST_R>', '' .. radius)
+   glsl = string.gsub(glsl, '<CST_BR>', '' .. ball_radius)
+   glsl = string.gsub(glsl, '<CST_FALL>', '' .. fall / ( 2 * math.pi))
+   print(glsl)
+   return implicit(v(-outer_radius, -outer_radius, -fall), v(outer_radius, outer_radius, fall), glsl)
 end
 
 function simple_ball_contraption(conf)
    trajectory_fall =  conf.rail.height.max - conf.rail.height.min
-   trajectory = ball_trajectory(trajectory_fall, conf.radius, conf.ball_radius)
+   trajectory = translate(0, 0, conf.rail.height.min) * ball_trajectory(trajectory_fall, conf.radius, conf.ball_radius)
    return union{
       cylinder(conf.radius + conf.rim + conf.rail.width, conf.base_height),
       difference{
 	 cylinder(conf.radius + conf.rail.width/2, conf.rail.height.max),
 	 cylinder(conf.radius - conf.rail.width/2, conf.rail.height.max),
-	 translate(0, 0, conf.rail.height.min) * trajectory
+	 translate(0, 0, conf.rail.height.min + trajectory_fall/2) * trajectory
       }
    }
 end
@@ -69,3 +84,6 @@ emit(
       ball_radius = 5
    }
 )
+
+--emit(ball_trajectory(20, 20, 5))
+
