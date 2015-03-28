@@ -23,6 +23,7 @@ Defined by an implicit surface, which is somehow a torus...
 ![A screenshot of the twisted torus](twisted-0000.png?raw=true)
 
 It is pretty nice to build ...except that I got a problem on the X axis while printing (and my printer is not properly calibrated yet)!
+![A photo of the twisted torus](IMG_1371-resized.jpg?raw=true)
 ![A photo of the twisted torus](IMG_1373-resized.jpg?raw=true)
 
 It can be pretty without support except where the previous problem occured. :-/
