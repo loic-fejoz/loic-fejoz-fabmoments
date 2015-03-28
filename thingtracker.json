@@ -36,6 +36,19 @@
 	    "license": "MIT, CC-BY 3.0",
 	    "tags": ["lasercut", "pneubotics", "softrobot", "educational", "kid"],
 	    "refUrl": "https://raw.githubusercontent.com/loic-fejoz/loic-fejoz-fabmoments/master/pneubotics-maze/thingtracker.json"
+	},
+	{
+	    "id": "5cadbe16-75aa-454e-b66d-e1fe17388f7d",
+	    "description": "3D printed twisted torus",
+	    "url": "https://github.com/loic-fejoz/loic-fejoz-fabmoments/tree/master/icesl-gallery#twisted-torus",
+	    "thumbnailURL": "https://raw.githubusercontent.com/loic-fejoz/loic-fejoz-fabmoments/tree/master/icesl-gallery/twisted-0000-100x103.jpg",
+	    "author": "Loïc Fejoz",
+	    "license": "MIT, CC-BY 3.0",
+	    "tags": ["implicit surface", "3Dprint", "3D", "IceSL", "field distance", "sphere tracing"],
+	    "metadata": {
+		"created": "2015-03-28T22:00:00.0Z",
+		"updated": "2015-03-28T22:00:00.0Z"
+	    }
 	}
     ]
 }
