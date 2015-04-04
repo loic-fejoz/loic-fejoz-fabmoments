@@ -17,14 +17,25 @@ IceSL Models are under the [MIT License](http://opensource.org/licenses/MIT).
 
 ## Gallery
 
+### Superquadrics
+
+Defined by implicit surfaces that are superquadrics, ie ${distanceEstimator}({pt}, radius, p) = (abs({pt})^p)^\frac{1}{p} - radius$
+
+For details, read appendix of [_Sphere tracing: a geometric method for the antialiased ray tracing of implicit surfaces_, John C. Hart](http://graphics.cs.illinois.edu/sites/default/files/zeno.pdf)
+
+![A screenshot of superquadrics examples](superquadrics-0000.png?raw=true)
+
 ### Twisted Torus
 
 Defined by an implicit surface, which is somehow a torus...
+
 ![A screenshot of the twisted torus](twisted-0000.png?raw=true)
 
 It is pretty nice to build ...except that I got a problem on the X axis while printing (and my printer is not properly calibrated yet)!
+
 ![A photo of the twisted torus](IMG_1371-resized.jpg?raw=true)
 ![A photo of the twisted torus](IMG_1373-resized.jpg?raw=true)
 
 It can be pretty without support except where the previous problem occured. :-/
+
 ![A photo of the twisted torus](IMG_1377-resized.jpg?raw=true)

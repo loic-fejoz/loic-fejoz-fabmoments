@@ -1,0 +1,13 @@
+{
+    "id": "8a6de797-11f5-4db2-9df3-03df6f352a2b",
+    "description": "3D models of superquadrics",
+    "url": "https://github.com/loic-fejoz/loic-fejoz-fabmoments/tree/master/icesl-gallery#superquadrics",
+    "thumbnailURL": "superquadrics-0000-100x99.png",
+    "author": "Loïc Fejoz",
+    "license": "MIT",
+    "tags": ["implicit surface", "3Dprinting", "3D", "IceSL", "field distance", "superquadrics"],
+    "metadata": {
+	"created": "2015-04-04T17:00:00.0Z",
+	"updated": "2015-04-04T17:00:00.0Z"
+    }
+}
