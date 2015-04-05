@@ -31,7 +31,17 @@ Defined by an implicit surface, which is somehow a torus...
 
 ![A screenshot of the twisted torus](twisted-0000.png?raw=true)
 
-It is pretty nice to build ...except that I got a problem on the X axis while printing (and my printer is not properly calibrated yet)!
+#### Second print
+
+It is pretty nice to build even without support!
+
+![A photo of the second print of twisted torus](twisted-0006.jpg?raw=true)
+![A photo from bellow of the second print of the twisted torus](twisted-0010.jpg?raw=true)
+
+First print was a failure due to a bug in the G-Code and a buggy printer: I got a problem on the X axis while printing (and my printer is not properly calibrated yet)!
+Please be aware that my printer has only a unique fan for the nozzle. Thus there is always one side that print better than the other. I shall upgrade it.
+
+#### First print
 
 ![A photo of the twisted torus](IMG_1371-resized.jpg?raw=true)
 ![A photo of the twisted torus](IMG_1373-resized.jpg?raw=true)
