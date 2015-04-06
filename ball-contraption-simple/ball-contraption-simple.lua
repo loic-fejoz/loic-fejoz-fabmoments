@@ -35,16 +35,17 @@ const vec2 torus = vec2(<CST_R>, <CST_BR>);
 
 float distanceEstimator(vec3 pp) 
 {
-  vec3 p;
   float angle =  atan(pp.x, pp.y);
   float new_z = pp.z - <CST_FALL> * angle;
-  if (new_z >= 0) {
-    p = vec3(pp.xy, 0);
-  } else {
-    p = vec3(pp.xy, new_z);
-  }
 
-  return sdTorus(p, torus);
+  vec3 p0 = vec3(pp.xy, 0);
+  float sdCylinderExt = length(p0) - <CST_R> - <CST_BR>;
+  float sdCylinderInt = length(p0) - <CST_R> + <CST_BR>;
+  float sdPipe = max(sdCylinderExt, -sdCylinderInt);
+  float sdPlaneXY = - new_z;
+  vec3 p = vec3(pp.xy, new_z);
+  float sdTheTorus = sdTorus(p, torus);
+  return min(max(sdPlaneXY, sdPipe), sdTheTorus);
 }
 
 ]]
@@ -71,17 +72,17 @@ end
 
 emit(
    simple_ball_contraption{
-      radius=50,
-      base_height=1,
-      rim=2,
+      radius = 60 / 2.0,
+      base_height = 2 * 0.2,
+      rim = 2,
       rail = {
-	 width = 5,
+	 width = 10,
 	 height = {
 	    max = 20,
 	    min = 5
 	 }
       },
-      ball_radius = 5
+      ball_radius = 16.65 / 2.0
    }
 )
 
