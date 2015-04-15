@@ -45,7 +45,7 @@ float distanceEstimator(vec3 pp)
   float sdPlaneXY = - new_z;
   vec3 p = vec3(pp.xy, new_z);
   float sdTheTorus = sdTorus(p, torus);
-  return min(max(sdPlaneXY, sdPipe), sdTheTorus);
+  return 0.1 * min(max(sdPlaneXY, sdPipe), sdTheTorus);
 }
 
 ]]
@@ -57,32 +57,71 @@ float distanceEstimator(vec3 pp)
 end
 
 function simple_ball_contraption(conf)
-   trajectory_fall =  conf.rail.height.max - conf.rail.height.min
-   trajectory = translate(0, 0, conf.rail.height.min) * ball_trajectory(trajectory_fall, conf.radius, conf.ball_radius)
+   if conf.outer_radius == nil then
+      conf.outer_radius = conf.outer_diameter / 2.0
+   end
+   if conf.rail.radius == nil then
+      conf.rail.radius = conf.outer_radius - conf.rim - (conf.rail.width / 2.0)
+   end
+   conf.rail.height.fall =  conf.rail.height.max - conf.rail.height.min
+   trajectory = translate(0, 0, conf.rail.height.min) * ball_trajectory(conf.rail.height.fall, conf.rail.radius, conf.ball_radius)
+--   trajectory = box(1)
    return union{
-      cylinder(conf.radius + conf.rim + conf.rail.width, conf.base_height),
+      cylinder(conf.outer_radius, conf.base_height),
       difference{
-	 cylinder(conf.radius + conf.rail.width/2, conf.rail.height.max),
-	 cylinder(conf.radius - conf.rail.width/2, conf.rail.height.max),
-	 translate(0, 0, conf.rail.height.min + trajectory_fall/2) * trajectory
+	 cylinder(conf.rail.radius + conf.rail.width/2, conf.rail.height.max),
+	 cylinder(conf.rail.radius - conf.rail.width/2, conf.rail.height.max),
+	 translate(0, 0, conf.rail.height.min + conf.rail.height.fall/2) * trajectory
       }
    }
 end
 
+function manual_ball_contraption(conf)
+   s = simple_ball_contraption(conf)
+   l = math.max(2 * conf.ball_radius, conf.rail.width)
+   b = difference{
+      s,
+      translate(-l/2, -conf.rail.radius, conf.rail.height.min + conf.base_height) * box(l, 2*l, 2*conf.rail.height.min)
+   }
+   l = l - 2 * conf.tolerance
+   pallet = intersection{
+      s,
+      translate(-l/2 - conf.tolerance, -conf.rail.radius, conf.rail.height.min + conf.base_height + conf.tolerance) * box(l, 2*l, 2*conf.rail.height.min)
+   }
+   if conf.arm.height == nil then
+      conf.arm.height = conf.arm.width
+   end
+   if conf.arm.length == nil then
+      conf.arm.length = 2 * conf.rail.radius - 2 * conf.rail.width
+   end
+   conf.arm.angle = math.deg(math.atan2(l/2, conf.rail.radius))
+   arm = translate(-l/2, -conf.arm.length/2, conf.base_height + conf.rail.height.min + conf.arm.height/2) * rotate(conf.arm.angle, 0, 0) * box(conf.arm.width, conf.arm.length, conf.arm.height)
+   return union{
+      b,
+      pallet,
+      arm,
+      translate(0, -conf.rail.radius, conf.rail.height.min + conf.rail.height.fall / 2) * box(5, 5, conf.rail.height.fall)
+   }
+end
 
+layer_thickness = 0.2
 emit(
-   simple_ball_contraption{
-      radius = 60 / 2.0,
-      base_height = 2 * 0.2,
+   manual_ball_contraption{
+      outer_diameter = 120,
+      base_height = 2 * layer_thickness,
       rim = 2,
       rail = {
 	 width = 10,
 	 height = {
-	    max = 20,
+	    max = 25,
 	    min = 5
 	 }
       },
-      ball_radius = 16.65 / 2.0
+      arm = {
+	 width = 3
+      },
+      ball_radius = 12.67 / 2.0,
+      tolerance = layer_thickness
    }
 )
 
