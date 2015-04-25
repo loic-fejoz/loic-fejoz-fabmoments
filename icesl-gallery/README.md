@@ -17,6 +17,12 @@ IceSL Models are under the [MIT License](http://opensource.org/licenses/MIT).
 
 ## Gallery
 
+### Pythagoras Tree
+
+The classical Fractal / L-system [Pythagoras Tree](http://en.wikipedia.org/wiki/L-system#Example_2:_Pythagoras_Tree) defined recursively.
+
+![A screenshot of superquadrics examples](pythagoras-tree-0000.png?raw=true)
+
 ### Superquadrics
 
 Defined by implicit surfaces that are superquadrics, ie ${distanceEstimator}({pt}, radius, p) = (abs({pt})^p)^\frac{1}{p} - radius$
