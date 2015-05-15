@@ -11,7 +11,12 @@ I am also on twitter [@loic_fejoz](https://twitter.com/loic_fejoz).
 * [Twisted Torus](icesl-gallery), a gallery of models create with IceSL.
 * See also [my work on our FabLab's wiki](http://wiki.nybi.cc/index.php/Utilisateur:Loic.fejoz)
 
-[<img src="tinwhistle/tinwhistle-800x562.jpg" alt="a 3D printed mouthpiece for a tinwhistle" style="max-width:200px; max-height: 200px">](tinwhistle)
+<style>
+img {
+max-width:200px; max-height: 200px;
+}
+</style>
+<a href="tinwhistle" alt="a 3D printed mouthpiece for a tinwhistle"><img src="tinwhistle/tinwhistle-800x562.jpg" alt="a 3D printed mouthpiece for a tinwhistle"></a>
 [<img src="couillard/couillard-printed.jpg" alt="a kind of trebuchet, 3D printed" style="max-width:200px; max-height: 200px">](couillard)
 [<img src="pneubotics-maze/IMG_1187-533x800.jpg" alt="a game to explain soft robots" style="max-width:200px; max-height: 200px">](pneubotics-maze)
 [<img src="http://wiki.nybi.cc/images/thumb/9/9f/Ombre-saint-nicolas.svg/800px-Ombre-saint-nicolas.svg.png" alt="hot wire cutting of Saint-Nicolas" style="max-width:200px; max-height: 200px">](http://wiki.nybi.cc/index.php/OmbreSaintNicolas)
