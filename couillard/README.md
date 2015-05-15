@@ -5,6 +5,8 @@ An attempt to build a [couillard](https://en.wikipedia.org/wiki/Couillard), ie a
 
 It is also my first model from scratch written for [IceSL](http://www.loria.fr/~slefebvr/icesl/). IceSL is a kind of OpenSCAD and Slic3r mixed but were model are written in Lua. It is very pleasant to write.
 
+Thanks to [Alexandre](https://twitter.com/rtsense) for the 3D print.
+
 Source
 ------
 
@@ -23,4 +25,5 @@ Gallery
 -------
 
 ![A screenshot of the couillard](couillard-screenshot.png?raw=true)
+![A printed couillard](couillard-printed.jpg)
 ![A fail attempt to print the support](20141227-support-couillard-800x533.jpg?raw=true)
