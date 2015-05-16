@@ -63,9 +63,9 @@ function computeConfig(config)
 end
 
 function build_profile(filename, config)
-   raw_profile = load_profile(filename, config)
+   local raw_profile = load_profile(filename, config)
    raw_profile = translate(config.bottom.radius, 0, 0) * rotate(90, 0 , config.angle) * raw_profile
-   profile = difference{
+   local profile = difference{
       raw_profile,
       cylinder(config.bottom.radius, config.thickness),
       translate(0, 0, config.upper.height - config.thickness) * cylinder(config.upper.radius, config.thickness)
@@ -75,10 +75,10 @@ end
 
 function build_lampshade(filename, config)
    computeConfig(config)
-   profile = build_profile(filename, config)
-   bottom_part = build_bottom_part(config)
-   top_part = translate(0, 0, config.upper.height - config.thickness) * build_upper_part(config)
-   all_profiles = {}
+   local profile = build_profile(filename, config)
+   local bottom_part = build_bottom_part(config)
+   local top_part = translate(0, 0, config.upper.height - config.thickness) * build_upper_part(config)
+   local all_profiles = {}
    for angle = 0, 360, (360 / config.profile_number) do
       local p = rotate(0, 0, angle) * profile
       emit(p, config.profile.brush)
@@ -106,6 +106,7 @@ local config = {
       -- radius = at middle
    },
    --   radius = average of the other two radii
+--   view = 'cutting' -- could also be 'assembled'
 }
 build_lampshade(Path .. 'profil-00.svg', config)
 
