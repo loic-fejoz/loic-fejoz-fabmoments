@@ -22,7 +22,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ]]
 
 function load_profile(filename, config)
-   local shapes = svg(Path .. 'profil-00.svg', 90)
+   local shapes = svg(filename, 90)
    local p = nil
    local s
    local big_number = 100000000000000
@@ -42,6 +42,8 @@ function load_profile(filename, config)
 	 p = merge(p, s)
       end
    end
+   -- transform because import from SVG reverse the orientation
+   p = translate(0, pts_max.y + pts_min.y, config.thickness) * rotate(180, 0, 0) * p
    p.bounding_box = {pts_min, pts_max}
    return p
 end
