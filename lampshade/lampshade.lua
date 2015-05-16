@@ -1,3 +1,25 @@
+--[[
+The MIT License (MIT)
+
+Copyright (c) 2015 Loïc Fejoz
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+the Software, and to permit persons to whom the Software is furnished to do so,
+subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+]]
 
 function load_profile(filename, config)
    local shapes = svg(Path .. 'profil-00.svg', 90)
@@ -73,12 +95,13 @@ end
 
 function build_profile(filename, config)
    local raw_profile = load_profile(filename, config)
-   raw_profile = translate(config.radius, 0, 0) * rotate(90, 0 , config.angle) * raw_profile
+   local t_raw_profile = translate(config.radius, 0, 0) * rotate(90, 0 , config.angle) * raw_profile
    local profile = difference{
-      raw_profile,
+      t_raw_profile,
       cylinder(config.bottom.radius, config.thickness),
       translate(0, 0, config.upper.height - config.thickness) * cylinder(config.upper.radius, config.thickness)
    }
+   profile.bounding_box = raw_profile.bounding_box
    return profile
 end
 
@@ -89,39 +112,32 @@ function build_lampshade(filename, config)
    local top_part = translate(0, 0, config.upper.height - config.thickness) * build_upper_part(config)
    local all_profiles = {}
    local inv_transform
+   local index = 0
    for angle = 0, 360, (360 / config.profile_number) do
       local p = rotate(0, 0, angle) * profile
-      emit(p, config.profile.brush)
+      if config.view == 'assembled' then
+	 emit(p, config.profile.brush)
+      else
+	 emit(
+	    translate(index * (profile.bounding_box[2].x - profile.bounding_box[1].x + config.tolerance), 0, 0) *
+	    translate(0, config.bottom.external_radius - profile.bounding_box[1].x, 0) *
+	       rotate(-90, 0, 0) *
+	       rotate(0, 0, -config.angle) *
+	       translate(-config.radius, 0, 0) *
+	       profile,
+	    config.profile.brush)
+      end
       table.insert(all_profiles, p)
+      index = index + 1
    end
    bottom_part = difference(bottom_part, union(all_profiles))
    top_part = difference(top_part, union(all_profiles))
    emit(bottom_part, config.bottom.brush)
    if config.view == 'cutting' then
-      inv_transform = translate(config.bottom.external_radius + config.upper.external_radius, 0,  - config.upper.height + config.thickness)
+      inv_transform = translate(config.bottom.external_radius + config.upper.external_radius + config.tolerance, 0,  - config.upper.height + config.thickness)
    else
       inv_transform = translate(0,0,0)
    end
    emit(inv_transform * top_part, config.upper.brush)
 end
-
-local config = {
-   thickness = 3,
-   profile_number = 4,
-   angle = 30, -- default is zero
-   bottom = {
-      external_radius = 100,
-      internal_radius = 80,
-      -- radius = at middle
-   },
-   upper = {
-      height = 200,
-      external_radius = 100,
-      internal_radius = 80,
-      -- radius = at middle
-   },
-   --   radius = average of the other two radii
---   view = 'cutting' -- could also be 'assembled'
-}
-build_lampshade(Path .. 'profil-00.svg', config)
 
