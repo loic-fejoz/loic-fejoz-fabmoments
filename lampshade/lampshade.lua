@@ -55,6 +55,15 @@ function computeConfig(config)
    if config.view == nil then
       config.view = 'assembled'
    end
+   if config.bottom.brush == nil then
+      config.bottom.brush = 0
+   end
+   if config.upper.brush == nil then
+      config.upper.brush = 0
+   end
+   if config.profile.brush == nil then
+      config.profile.brush = 0
+   end
    if config.view == 'assembled' then
       config.bottom.brush = 0
       config.upper.brush = 0
@@ -64,7 +73,7 @@ end
 
 function build_profile(filename, config)
    local raw_profile = load_profile(filename, config)
-   raw_profile = translate(config.bottom.radius, 0, 0) * rotate(90, 0 , config.angle) * raw_profile
+   raw_profile = translate(config.radius, 0, 0) * rotate(90, 0 , config.angle) * raw_profile
    local profile = difference{
       raw_profile,
       cylinder(config.bottom.radius, config.thickness),
@@ -79,6 +88,7 @@ function build_lampshade(filename, config)
    local bottom_part = build_bottom_part(config)
    local top_part = translate(0, 0, config.upper.height - config.thickness) * build_upper_part(config)
    local all_profiles = {}
+   local inv_transform
    for angle = 0, 360, (360 / config.profile_number) do
       local p = rotate(0, 0, angle) * profile
       emit(p, config.profile.brush)
@@ -87,7 +97,12 @@ function build_lampshade(filename, config)
    bottom_part = difference(bottom_part, union(all_profiles))
    top_part = difference(top_part, union(all_profiles))
    emit(bottom_part, config.bottom.brush)
-   emit(top_part, config.upper.brush)
+   if config.view == 'cutting' then
+      inv_transform = translate(config.bottom.external_radius + config.upper.external_radius, 0,  - config.upper.height + config.thickness)
+   else
+      inv_transform = translate(0,0,0)
+   end
+   emit(inv_transform * top_part, config.upper.brush)
 end
 
 local config = {
