@@ -42,5 +42,6 @@ IceSL Model is under the [MIT License](http://opensource.org/licenses/MIT).
 Gallery
 -------
 
+![A screenshot of the assembled lampshade with profil-01](shot0002.png?raw=true)
 ![A screenshot of the assembled lampshade with profil-00](shot0001.png?raw=true)
 ![A screenshot of the cutting parts for the lampshade with profil-00](shot0000.png?raw=true)
