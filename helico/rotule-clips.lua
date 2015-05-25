@@ -39,13 +39,14 @@ piece =
    }
 
 
-emit(rotate(180, 0, 0) * piece,1)
+emit(rotate(180, 0, 0) * piece, 1)
 
 
 -- This used to be a native function
 function support(obj)
    hs = (h + 2 * ep) / 2
+   -- 0.3 is the minimum diameter that generates a GCode something.
    return rotate(180, 0, 0) * translate(L / 2 - delta_x_rotule, -(l / 2 + delta_y_rotule), 0) * cylinder(0.3, hs)
 end
 
-emit(support(rotule))
+--emit(support(rotule))
