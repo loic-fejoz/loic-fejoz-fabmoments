@@ -67,7 +67,7 @@
 <!-- filament_priming_mm[1]: 	 0.1 -->
 <!-- tool_temp_degree_c[1]  : 	 180 -->
 <!-- process_thin_features : 	 off -->
-<g id="layer0.200">
+<g id="layer1" inkscape:groupmode="layer" inkscape:label="layer0.200(1)" >
 <path style="fill:none;stroke:#000000;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" 
 d="
 M 96.114,91.564 
