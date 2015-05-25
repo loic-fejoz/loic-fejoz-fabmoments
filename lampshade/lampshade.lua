@@ -61,6 +61,9 @@ function build_upper_part(config)
 end
 
 function computeConfig(config)
+   if config.scale == nil then
+      config.scale = 1
+   end
    if config.angle == nil then
       config.angle = 0
    end
@@ -118,9 +121,10 @@ function build_lampshade(filename, config)
    for angle = 0, 360, (360 / config.profile_number) do
       local p = rotate(0, 0, angle) * profile
       if config.view == 'assembled' then
-	 emit(p, config.profile.brush)
+	 emit(scale(config.scale) * p, config.profile.brush)
       else
 	 emit(
+	    scale(config.scale) *
 	    translate(index * (profile.bounding_box[2].x - profile.bounding_box[1].x + config.tolerance), 0, 0) *
 	    translate(0, config.bottom.external_radius - profile.bounding_box[1].x, 0) *
 	       rotate(-90, 0, 0) *
@@ -134,12 +138,12 @@ function build_lampshade(filename, config)
    end
    bottom_part = difference(bottom_part, union(all_profiles))
    top_part = difference(top_part, union(all_profiles))
-   emit(bottom_part, config.bottom.brush)
+   emit(scale(config.scale) * bottom_part, config.bottom.brush)
    if config.view == 'cutting' then
       inv_transform = translate(config.bottom.external_radius + config.upper.external_radius + config.tolerance, 0,  - config.upper.height + config.thickness)
    else
       inv_transform = translate(0,0,0)
    end
-   emit(inv_transform * top_part, config.upper.brush)
+   emit(scale(config.scale) * inv_transform * top_part, config.upper.brush)
 end
 
