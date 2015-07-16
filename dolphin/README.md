@@ -4,6 +4,8 @@ Dolphin
 
 A simple try to print and CNC a dolphin model designed with [FabInPocket](http://loic-fejoz.github.io/fabinpocket/).
 
+NB: I have plan to finer CNC milling with IceSL.
+
 ![3D print of the dolphin](dolphin-thumbnail.jpg)
 
 Source
