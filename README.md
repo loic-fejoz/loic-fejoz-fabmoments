@@ -9,8 +9,10 @@ I am also on twitter [@loic_fejoz](https://twitter.com/loic_fejoz).
 * [Pneubotics Maze](pneubotics-maze), an activity for kids to explain soft robots principles.
 * [Gabriel's Horn](gabriel-horn), usage of implicit surface within IceSL.
 * [Twisted Torus](icesl-gallery), a gallery of models create with IceSL.
+* [Dolphin](dolphin), a model easily designed with FabInPocket
 * See also [my work on our FabLab's wiki](http://wiki.nybi.cc/index.php/Utilisateur:Loic.fejoz)
 
+<a href="dolphin" title="a model designed in less than 10mn with FabInPocket"><img src="dolphin/3d-printed-dolphin.jpg" width="200px" /></a>
 <a href="tinwhistle" title="a 3D printed mouthpiece for a tinwhistle"><img src="tinwhistle/tinwhistle-800x562.jpg" width="200px" /></a>
 <a href="couillard" title="a kind of trebuchet, 3D printed"><img src="couillard/couillard-printed.jpg" height="200px" /></a>
 <a href="pneubotics-maze" title="a game to explain soft robots" ><img src="pneubotics-maze/IMG_1187-533x800.jpg" height="200px" /></a>

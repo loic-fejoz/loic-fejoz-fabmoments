@@ -1,0 +1,14 @@
+{
+    "id": "f3a87321-4ae1-4893-92c9-63da5202b669",
+    "description": "A dolphin easily design with FabInPocket online software.",
+    "title": "Dolphin",
+    "url": "https://github.com/loic-fejoz/loic-fejoz-fabmoments/tree/master/dolphin",
+    "thumbnailURL": "dolphin-thumbnail.jpg",
+    "author": "Loïc Fejoz",
+    "license": "MIT",
+    "tags": ["dolphin", "3Dprint", "3D", "IceSL", "CNC", "FabInPocket"],
+    "metadata": {
+	"created": "2015-07-14T10:01:00.0Z",
+	"updated": "2015-07-16T17:15:00.0Z"
+    }
+}
