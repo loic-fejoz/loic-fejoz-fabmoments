@@ -1,7 +1,7 @@
 width = 19.80
-height = 2
+height = 3
 inter_hole_length = 38
-central_hole_radius = 5 / 2
+central_hole_radius = 6 / 2
 central_hole_head_radius = 10 / 2
 central_hole_head_height = 4
 central_cylinder_height = 6
@@ -16,9 +16,10 @@ function pin()
 end
 
 emit(
+   rotate(0, 0, 45) *
     difference{
       union{
-        box(width, 2 * inter_hole_length, 2),
+        box(width, 2 * inter_hole_length, height),
         translate(0, inter_hole_length, -height / 2) * cylinder(width / 2, height),
         translate(0, -inter_hole_length, -height / 2) * cylinder(width / 2, height),
         cylinder(13.8 / 2, central_cylinder_height),
