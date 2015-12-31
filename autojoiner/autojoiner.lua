@@ -1,5 +1,5 @@
 
-if ui_scalar == undefined then
+if ui_scalar == nil then
   function ui_scalar(a, b ,c , d)
     return b
   end
