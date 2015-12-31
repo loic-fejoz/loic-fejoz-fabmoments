@@ -87,6 +87,10 @@ j =  join(parts[1], parts[3], v(0, 10, 0))
 parts[1] = j[1]
 parts[3] = j[2]
 
+-- j =  join(parts[2], parts[3], v(0, 0, 10))
+-- parts[2] = j[1]
+-- parts[3] = j[2]
+
 itrs={}
 itrs[1] = translate(0, 0, 0)
 itrs[2] = translate(0, width+tickness, 0)
