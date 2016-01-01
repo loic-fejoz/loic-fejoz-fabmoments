@@ -11,7 +11,7 @@ def triangle(t, l):
 
 def sierpinski_inner(t, l, space):
     inner_length = l / 2 - 2 * math.cos(math.pi * 30.0 / 180.0) * space
-    if inner_length < max(space, 2):
+    if inner_length < space:
         return
     t.penup()
     t.forward(l / 2)
@@ -50,7 +50,7 @@ def sierpinski(t, l, space):
     sierpinski_inner(t, l, space)
     
 t = Turtle()
-sierpinski(t, 210, 3)
+sierpinski(t, 210, 1)
 
 
 done()

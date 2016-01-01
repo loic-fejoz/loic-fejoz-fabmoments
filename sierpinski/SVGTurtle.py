@@ -56,6 +56,7 @@ def done():
 """)
     i = 0
     for turtle in _turtles:
+        turtle.done()
         i += 1
         sys.stdout.write('<g id="turtle' + str(i)  + '" inkscape:groupmode="layer" inkscape:label="turtle' + str(i) + '" >\n')
         for path in turtle.paths:
@@ -63,7 +64,7 @@ def done():
             sys.stdout.write('        d="')
             cmd = 'M'
             for pt in path:
-                sys.stdout.write(cmd + "%d,%d " % (pt[0], pt[1]))
+                sys.stdout.write(cmd + "%f,%f " % (pt[0], pt[1]))
                 cmd = 'L'
             sys.stdout.write('" />\n')
         sys.stdout.write("</g>\n")
