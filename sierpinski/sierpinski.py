@@ -1,5 +1,7 @@
 #!/usr/bin/python
-import turtle
+# from turtle import Turtle
+# from turtle import done
+from SVGTurtle import Turtle, done
 import math
 
 def triangle(t, l):
@@ -47,8 +49,8 @@ def sierpinski(t, l, space):
     triangle(t, l)
     sierpinski_inner(t, l, space)
     
-t = turtle.Turtle()
-sierpinski(t, 500, 5)
+t = Turtle()
+sierpinski(t, 210, 3)
 
 
-turtle.done()
+done()
