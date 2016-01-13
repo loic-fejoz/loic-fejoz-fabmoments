@@ -40,9 +40,16 @@ function tree(state)
    emit(translate(state.origin) * sphere(radius), state.brush)
    state.origin = state.origin + state.direction
    state.direction = (2/3 + math.random()/3) * state.direction
-   state.direction = state.rand_angle(state) * state.direction
+   local rotation = state.rand_angle(state)
+   state.direction = rotation * state.direction
+   if flip(state.branching) then
+      print("branching")
+      local d = shallowcopy(state)
+--      d.brush = state.brush + 1
+      d.direction = rotation * state.direction
+      tree(d)
+   end
    tree(state)
-
 end
 
 -- UI
@@ -54,16 +61,17 @@ if ui_scalar == nil then
 end
 
 radius = ui_scalar('radius', 25, 10, 100)
-branching = ui_scalar('branching', 80, 0, 100) / 100
+branching = ui_scalar('branching', 50, 0, 100) / 100
+max_angle = ui_scalar('max angle', 20, 0, 360)
 
 -- Main
 tree{
    radius=radius,
-   branching=1,
+   branching=branching,
    origin=v(0,0,0),
    direction=v(0,0,radius),
    min_radius=5,
-   angle=20,   
+   angle=max_angle,
    rand_angle = rand_angle,
    brush=0
 }
