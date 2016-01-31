@@ -83,10 +83,13 @@ function owall(x, y, z, r)
   return merge(blocks)
 end
 
--- emit(ccube(10,10,10),1)
--- emit(crounded_rectangle(10,10,10,1))
+function samples()
+	emit(owall(stone_stat.avg.x * 6, stone_stat.avg.y, stone_stat.avg.z * 7, 1))
+	load_warp_shader(Path .. 'stone-warp.sh')
+end	
 
-emit(owall(stone_stat.avg.x * 6, stone_stat.avg.y, stone_stat.avg.z * 7, 1))
---emit(ocube(stone_stat.avg.x * 6, stone_stat.avg.y, stone_stat.avg.z * 7),1)
-
-load_warp_shader(Path .. 'stone-warp.sh')
+-- If used as main script then display samples
+-- see http://stackoverflow.com/questions/4521085/main-function-in-lua
+if not pcall(getfenv, 4) then 
+	samples();
+end
