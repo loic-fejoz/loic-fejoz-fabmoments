@@ -1,12 +1,28 @@
-dofile(Path .. 'stone.lua')
+with_details = true
 
--- function orounded_rectangle(x, y, z, r)
-	-- return ocube(x,y,z)
--- end
+if with_details then
+	dofile(Path .. 'stone.lua')
+else
+	function orounded_rectangle(x, y, z, r)
+		return ocube(x,y,z)
+	end
 
--- function owall(x, y, z, r)
-	-- return ocube(x,y,z)
--- end
+	function owall(x, y, z, r)
+		return ocube(x,y,z)
+	end
+end
+
+if ui_scalar == nil then
+  function ui_scalar(a, b ,c , d)
+    return b
+  end
+end
+
+if ui_int == nil then
+  function ui_int(label, current, min_val, max_val)
+    return math.floor(ui_scalar(label, current, min_val, max_val))
+  end
+end
 
 function vrotate(angles)
 	return rotate(angles.x, angles.y, angles.z)
@@ -64,7 +80,7 @@ end
 
 function samples()
 	emit(castle{
-		side=4,
+		side=ui_int("castle side", 4 , 4, 10),
 		width=184,
 		wall={
 			thickness=5,
@@ -76,6 +92,7 @@ function samples()
 			}
 		},
 		tower={
+            -- side = castle.side,
 			wall={
 				stone={
 					avg=v(12, 7, 15),
