@@ -1,8 +1,3 @@
-stone_stat = {
-	avg=v(12, 5, 5),
-	delta=v(5, 0, 0)
-}
-
 dofile(Path .. 'stone.lua')
 
 -- function owall(x, y, z, r)
@@ -25,38 +20,48 @@ function polygon(shaper, degree, width)
 	return merge(shapes)
 end
 
-wall_length = v(stone_stat.avg.x * 12, stone_stat.avg.y, stone_stat.avg.z * 7)
-
 function tower(conf)
 	function tower_side()
-		return owall(conf.width, conf.wall.thickness, conf.height, 0.5)
+		return owall(conf.width, conf.wall.thickness, conf.height, conf.wall.stone)
 	end
 	return polygon(tower_side, 4, conf.width)
 end
 
 function castle(conf)
-	local tower_conf = {
-		width= conf.width/4,
-		height = conf.wall.height * 3,
-		wall={
-			thickness=conf.wall.thickness
-		}
-	}
+	local tower_conf = conf.tower
+	tower_conf.width= conf.width/4
+	tower_conf.height = conf.wall.height * 3
+	tower_conf.wall.thickness=conf.wall.thickness
 	function castle_side()
 		return merge{
 			tower(tower_conf),
-			translate(tower_conf.width,0,0) * owall(0.75*conf.width, conf.wall.thickness, conf.wall.height, 1),
+			translate(tower_conf.width,0,0) * owall(0.5*conf.width, conf.wall.thickness, conf.wall.height, conf.wall.stone),
 		}
 	end
-	return polygon(castle_side, 4, tower_conf.width + wall_length.x)
+	return polygon(castle_side, conf.side, conf.width)
 end
 
 function samples()
 	emit(castle{
-		width=stone_stat.avg.x * 16,
+		side=4,
+		width=184,
 		wall={
-			thickness=stone_stat.avg.y,
-			height=stone_stat.avg.z * 7
+			thickness=5,
+			height=35,
+			stone={
+				avg=v(12, 5, 5),
+				delta=v(5, 0, 0),
+				radius=1
+			}
+		},
+		tower={
+			wall={
+				stone={
+					avg=v(12, 7, 15),
+					delta=v(5, 0, 0),
+					radius=0.5
+				}
+			}
 		}
 	})
 --	load_warp_shader(Path .. 'stone-warp.sh')

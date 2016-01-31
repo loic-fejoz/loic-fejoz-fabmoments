@@ -40,12 +40,7 @@ function crounded_rectangle(x, y, z, r)
 	return	translate(-x/2,-y/2,-z/2) * orounded_rectangle(x,y,z,r)
 end
 
-stone_stat = {
-	avg=v(12, 5, 5),
-	delta=v(5, 0, 0)
-}
-
-function rand_block_size(size_left)
+function rand_block_size(size_left, stone_stat)
 	local s_min = stone_stat.avg - stone_stat.delta
 	local s_max = stone_stat.avg + stone_stat.delta
 	local s = v(
@@ -65,7 +60,8 @@ function rand_block_size(size_left)
 	return s
 end
 
-function owall(x, y, z, r)
+function owall(x, y, z, conf)
+	r = conf.radius
 	blocks = {}
 	dy = 0
 	dz = 0
@@ -73,18 +69,23 @@ function owall(x, y, z, r)
 		dx = 0
 		while dx < x do
 			local left_size = v(x-dx, y-dy,z-dz)
-			local size = rand_block_size(left_size)
+			local size = rand_block_size(left_size, conf)
 			s = translate(dx, 0, dz) * orounded_rectangle3(size, math.min(r, size.x/2))
 			table.insert(blocks,s)
 			dx =  dx + size.x
 		end
-		dz = dz + stone_stat.avg.z
+		dz = dz + conf.avg.z
 	end
   return merge(blocks)
 end
 
 function samples()
-	emit(owall(stone_stat.avg.x * 6, stone_stat.avg.y, stone_stat.avg.z * 7, 1))
+	local conf = {
+		avg=v(12, 5, 5),
+		delta=v(5, 0, 0),
+		radius=1
+	}
+	emit(owall(conf.avg.x * 6, conf.avg.y, conf.avg.z * 7, conf))
 	load_warp_shader(Path .. 'stone-warp.sh')
 end	
 
