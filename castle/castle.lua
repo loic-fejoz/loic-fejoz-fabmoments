@@ -22,7 +22,12 @@ end
 
 function tower(conf)
 	function tower_side()
-		return owall(conf.width, conf.wall.thickness, conf.height, conf.wall.stone)
+		return merge{
+			translate(conf.width/3, 0, conf.height) * ocube(conf.width/3, conf.wall.thickness, conf.wall.stone.avg.z*0.75),
+			translate(0, 0, conf.height) * ocube(conf.width/6, conf.wall.thickness, conf.wall.stone.avg.z*0.75),
+			translate(5*conf.width/6, 0, conf.height) * ocube(conf.width/6, conf.wall.thickness, conf.wall.stone.avg.z*0.75),
+			owall(conf.width, conf.wall.thickness, conf.height, conf.wall.stone)
+		}
 	end
 	return polygon(tower_side, 4, conf.width)
 end
