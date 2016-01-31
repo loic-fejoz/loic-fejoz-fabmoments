@@ -1,3 +1,8 @@
+/*
+Extract from https://www.shadertoy.com/view/ldSSzV by Alexander Alekseev aka TDM - 2014
+License Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License.
+*/
+
 const int NUM_STEPS = 32;
 const int AO_SAMPLES = 3;
 const vec2 AO_PARAM = vec2(1.2, 3.8);
