@@ -1,5 +1,9 @@
 dofile(Path .. 'stone.lua')
 
+-- function orounded_rectangle(x, y, z, r)
+	-- return ocube(x,y,z)
+-- end
+
 -- function owall(x, y, z, r)
 	-- return ocube(x,y,z)
 -- end
@@ -29,18 +33,30 @@ function tower(conf)
 			owall(conf.width, conf.wall.thickness, conf.height, conf.wall.stone)
 		}
 	end
-	return polygon(tower_side, 4, conf.width)
+	return polygon(tower_side, conf.side, conf.width)
 end
 
 function castle(conf)
 	local tower_conf = conf.tower
-	tower_conf.width= conf.width/4
-	tower_conf.height = conf.wall.height * 3
-	tower_conf.wall.thickness=conf.wall.thickness
+	if tower_conf.side == undefined then
+		tower_conf.side = conf.side
+	end
+	if tower_conf.width == undefined then
+		tower_conf.width= conf.width/tower_conf.side
+	end
+	if tower_conf.height == undefined then
+		tower_conf.height = conf.wall.height * 3
+	end
+	if tower_conf.wall == undefined then
+		tower_conf.wall = conf.wall
+	end
+	if tower_conf.wall.thickness == undefined then
+		tower_conf.wall.thickness=conf.wall.thickness
+	end
 	function castle_side()
 		return merge{
 			tower(tower_conf),
-			translate(tower_conf.width,0,0) * owall(0.5*conf.width, conf.wall.thickness, conf.wall.height, conf.wall.stone),
+			translate(tower_conf.width,0,0) * owall(conf.width-2*tower_conf.width, conf.wall.thickness, conf.wall.height, conf.wall.stone),
 		}
 	end
 	return polygon(castle_side, conf.side, conf.width)
