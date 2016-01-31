@@ -23,9 +23,9 @@ end
 function tower(conf)
 	function tower_side()
 		return merge{
-			translate(conf.width/3, 0, conf.height) * ocube(conf.width/3, conf.wall.thickness, conf.wall.stone.avg.z*0.75),
-			translate(0, 0, conf.height) * ocube(conf.width/6, conf.wall.thickness, conf.wall.stone.avg.z*0.75),
-			translate(5*conf.width/6, 0, conf.height) * ocube(conf.width/6, conf.wall.thickness, conf.wall.stone.avg.z*0.75),
+			translate(conf.width/3, 0, conf.height) * orounded_rectangle(conf.width/3, conf.wall.thickness, conf.wall.stone.avg.z*0.75, conf.wall.stone.radius),
+			translate(0, 0, conf.height) * orounded_rectangle(conf.width/6, conf.wall.thickness, conf.wall.stone.avg.z*0.75, conf.wall.stone.radius),
+			translate(5*conf.width/6, 0, conf.height) * orounded_rectangle(conf.width/6, conf.wall.thickness, conf.wall.stone.avg.z*0.75, conf.wall.stone.radius),
 			owall(conf.width, conf.wall.thickness, conf.height, conf.wall.stone)
 		}
 	end
