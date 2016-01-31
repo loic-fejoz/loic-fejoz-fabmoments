@@ -65,7 +65,7 @@ function rand_block_size(size_left)
 	return s
 end
 
-function owall(x, y, z)
+function owall(x, y, z, r)
 	blocks = {}
 	dy = 0
 	dz = 0
@@ -74,7 +74,7 @@ function owall(x, y, z)
 		while dx < x do
 			local left_size = v(x-dx, y-dy,z-dz)
 			local size = rand_block_size(left_size)
-			s = translate(dx, 0, dz) * orounded_rectangle3(size, 1)
+			s = translate(dx, 0, dz) * orounded_rectangle3(size, math.min(r, size.x/2))
 			table.insert(blocks,s)
 			dx =  dx + size.x
 		end
@@ -86,7 +86,7 @@ end
 -- emit(ccube(10,10,10),1)
 -- emit(crounded_rectangle(10,10,10,1))
 
-emit(owall(stone_stat.avg.x * 6, stone_stat.avg.y, stone_stat.avg.z * 7))
+emit(owall(stone_stat.avg.x * 6, stone_stat.avg.y, stone_stat.avg.z * 7, 1))
 --emit(ocube(stone_stat.avg.x * 6, stone_stat.avg.y, stone_stat.avg.z * 7),1)
 
 load_warp_shader(Path .. 'stone-warp.sh')
