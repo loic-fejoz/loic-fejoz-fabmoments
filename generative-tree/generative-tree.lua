@@ -43,7 +43,7 @@ function tree(state)
    local rotation = state.rand_angle(state)
    state.direction = rotation * state.direction
    if flip(state.branching) then
-      print("branching")
+--      print("branching")
       local d = shallowcopy(state)
 --      d.brush = state.brush + 1
       d.direction = rotation * state.direction
@@ -60,7 +60,8 @@ if ui_scalar == nil then
   end
 end
 
-radius = ui_scalar('radius', 25, 10, 100)
+radius = ui_scalar('radius', 5, 10, 100)
+min_radius = ui_scalar('min radius', 1, 0, 100)
 branching = ui_scalar('branching', 50, 0, 100) / 100
 max_angle = ui_scalar('max angle', 20, 0, 360)
 
@@ -70,7 +71,7 @@ tree{
    branching=branching,
    origin=v(0,0,0),
    direction=v(0,0,radius),
-   min_radius=5,
+   min_radius=min_radius,
    angle=max_angle,
    rand_angle = rand_angle,
    brush=0
