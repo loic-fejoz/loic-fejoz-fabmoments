@@ -1,0 +1,14 @@
+{
+    "id": "122b4f9d-adc7-454a-89e9-4ecec2bd9446"
+    "description": "procedural modeling of a castle with warp shader for stones"
+    "title": "Stone castle",
+    "url": "https://github.com/loic-fejoz/loic-fejoz-fabmoments/tree/master/castle",
+    "thumbnailURL": "20160206_0016-100x89.jpg",
+    "author": "Loïc Fejoz",
+    "license": "MIT",
+    "tags": ["castle", "stone", "3Dprint", "3D", "IceSL", "warp shader", "procedural modeling"],
+    "metadata": {
+	"created": "2016-01-31T14:57:00.0Z",
+	"updated": "2016-02-06T18:30:00.0Z"
+    }
+}

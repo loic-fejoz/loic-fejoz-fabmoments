@@ -4,14 +4,17 @@ FabMoments of Loïc Fejoz
 A repositories of various thing, [I](http://www.fejoz.net) am building.
 I am also on twitter [@loic_fejoz](https://twitter.com/loic_fejoz).
 
-* [Tin Whisthle](tinwhistle)
+
+* [castle](castle), a simple procedural modeling of castle with random stones, and a slight warp shader within IceSL.
 * [Couillard](couillard), a kind of trebuchet.
 * [Pneubotics Maze](pneubotics-maze), an activity for kids to explain soft robots principles.
 * [Gabriel's Horn](gabriel-horn), usage of implicit surface within IceSL.
 * [Twisted Torus](icesl-gallery), a gallery of models create with IceSL.
 * [Dolphin](dolphin), a model easily designed with FabInPocket
+* [Tin Whisthle](tinwhistle)
 * See also [my work on our FabLab's wiki](http://wiki.nybi.cc/index.php/Utilisateur:Loic.fejoz)
 
+<a href="castle" title=""><img src="castle/20160206_0016-100x89.jpg" height="150px" /></a>
 <a href="dolphin" title="a model designed in less than 10mn with FabInPocket"><img src="dolphin/3d-printed-dolphin.jpg" width="200px" /></a>
 <a href="tinwhistle" title="a 3D printed mouthpiece for a tinwhistle"><img src="tinwhistle/tinwhistle-800x562.jpg" width="200px" /></a>
 <a href="couillard" title="a kind of trebuchet, 3D printed"><img src="couillard/couillard-printed.jpg" height="200px" /></a>

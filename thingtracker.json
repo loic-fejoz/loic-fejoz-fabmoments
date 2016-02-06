@@ -1,8 +1,8 @@
 {
-    "updated": "2015-01-15T18:06:00.0Z",
+    "updated": "2016-02-06T18:45:00.0Z",
     "description": "Thing tracker dedicated to FabMoments of Loïc Fejoz.",
     "url": "https://raw.githubusercontent.com/loic-fejoz/loic-fejoz-fabmoments/master/thingtracker.json",
-    "thingsCount": 2,
+    "thingsCount": 6,
     "things": [
 	{
 	    "id": "ae85eb4f-f1d8-478a-ac3d-c93c168fdc86",
@@ -62,14 +62,22 @@
 	    "description": "A dolphin easily design with FabInPocket online software.",
 	    "title": "Dolphin",
 	    "url": "https://github.com/loic-fejoz/loic-fejoz-fabmoments/tree/master/dolphin",
-	    "thumbnailURL": "dolphin-thumbnail.jpg",
+	    "thumbnailURL": "https://raw.githubusercontent.com/loic-fejoz/loic-fejoz-fabmoments/tree/master/dolphin/dolphin-thumbnail.jpg",
 	    "author": "Loïc Fejoz",
-	    "license": "MIT",
+	    "license": "MIT, CC-BY 3.0",
 	    "tags": ["dolphin", "3Dprint", "3D", "IceSL", "CNC", "FabInPocket"],
-	    "metadata": {
-		"created": "2015-07-14T10:01:00.0Z",
-		"updated": "2015-07-16T17:15:00.0Z"
-	    }
-	}
+	    "refUrl": "https://raw.githubusercontent.com/loic-fejoz/loic-fejoz-fabmoments/master/dolphin/thingtracker.json"
+	},
+	{
+	    "id": "122b4f9d-adc7-454a-89e9-4ecec2bd9446"
+	    "description": "procedural modeling of a castle with warp shader for stones"
+	    "title": "Stone castle",
+	    "url": "https://github.com/loic-fejoz/loic-fejoz-fabmoments/tree/master/castle",
+	    "thumbnailURL": "https://raw.githubusercontent.com/loic-fejoz/loic-fejoz-fabmoments/tree/master/castle/20160206_0016-100x89.jpg",
+	    "author": "Loïc Fejoz",
+	    "license": "MIT, CC-BY 3.0",
+	    "tags": ["castle", "stone", "3Dprint", "3D", "IceSL", "warp shader", "procedural modeling"],
+	    "refUrl": "https://raw.githubusercontent.com/loic-fejoz/loic-fejoz-fabmoments/master/castle/thingtracker.json"
+	}	
     ]
 }

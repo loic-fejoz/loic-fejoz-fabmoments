@@ -73,6 +73,6 @@ float fbm3(vec3 p, float a, float f) {
 vec2 warp(vec3 p)
 {
   float v = p.x;
-  vec2 d = vec2(0.0, fbm3(p*100.0, 0.4, 2.96) * DISPLACEMENT);
+  vec2 d = vec2(fbm3(p*100.0, 0.4, 2.96) * DISPLACEMENT, fbm3(p*100.0, 0.4, 2.96) * DISPLACEMENT);
   return p.xy + d;
 }
