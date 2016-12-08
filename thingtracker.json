@@ -78,6 +78,17 @@
 	    "license": "MIT, CC-BY 3.0",
 	    "tags": ["castle", "stone", "3Dprint", "3D", "IceSL", "warp shader", "procedural modeling"],
 	    "refUrl": "https://raw.githubusercontent.com/loic-fejoz/loic-fejoz-fabmoments/master/castle/thingtracker.json"
-	}	
+	},
+	{
+	    "id": "17b9b30a-07a2-4ae1-9016-932d8fccd8d1"
+	    "description": "Flocons de neige en papier découpés"
+	    "title": "Flocons",
+	    "url": "https://github.com/loic-fejoz/loic-fejoz-fabmoments/tree/master/flocons",
+	    "thumbnailURL": "https://raw.githubusercontent.com/loic-fejoz/loic-fejoz-fabmoments/tree/master/flocons-thumbnail.jpg",
+	    "author": "Loïc Fejoz",
+	    "license": "CC-BY 3.0",
+	    "tags": ["flocons", "silhouette portrait", "paper cut"],
+	    "refUrl": "https://raw.githubusercontent.com/loic-fejoz/loic-fejoz-fabmoments/master/flocons/thingtracker.json"
+	}
     ]
 }
