@@ -5,6 +5,7 @@ A repositories of various thing, [I](http://www.fejoz.net) am building.
 I am also on twitter [@loic_fejoz](https://twitter.com/loic_fejoz).
 
 
+* [flocons](flocons), simple paper cut of snow flakes.
 * [castle](castle), a simple procedural modeling of castle with random stones, and a slight warp shader within IceSL.
 * [Couillard](couillard), a kind of trebuchet.
 * [Pneubotics Maze](pneubotics-maze), an activity for kids to explain soft robots principles.
@@ -14,6 +15,7 @@ I am also on twitter [@loic_fejoz](https://twitter.com/loic_fejoz).
 * [Tin Whisthle](tinwhistle)
 * See also [my work on our FabLab's wiki](http://wiki.nybi.cc/index.php/Utilisateur:Loic.fejoz)
 
+<a href="flocons" title=""><img src="flocons/flocons-thumbnail.jpg" height="150px" /></a>
 <a href="castle" title=""><img src="castle/20160206_0016-100x89.jpg" height="150px" /></a>
 <a href="dolphin" title="a model designed in less than 10mn with FabInPocket"><img src="dolphin/3d-printed-dolphin.jpg" width="200px" /></a>
 <a href="tinwhistle" title="a 3D printed mouthpiece for a tinwhistle"><img src="tinwhistle/tinwhistle-800x562.jpg" width="200px" /></a>
