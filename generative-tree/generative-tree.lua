@@ -60,6 +60,9 @@ if ui_scalar == nil then
   end
 end
 
+seed = ui_scalar('seed', 0, 1024, 1)
+math.randomseed(seed)
+
 radius = ui_scalar('radius', 5, 10, 100)
 min_radius = ui_scalar('min radius', 1, 0, 100)
 branching = ui_scalar('branching', 50, 0, 100) / 100
