@@ -24,7 +24,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 function ball_trajectory(fall, radius, ball_radius)
    outer_radius = radius + ball_radius
    glsl = [[
-float minDistanceSphereTracing=0.01;
+//float minDistanceSphereTracing=0.01;
 float sdTorus( vec3 p, vec2 t )
 {
   vec2 q = vec2(length(p.xy)-t.x,p.z);

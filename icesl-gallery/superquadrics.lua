@@ -25,7 +25,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 -- See IceSL's forum for the trick to multiply distance by 0.1.
 function superquadrics(radius, p)
    glsl = [[
-float minDistanceSphereTracing=0.001;
+//float minDistanceSphereTracing=0.001;
 
 float sum3(vec3 p) {
   return p.x + p.y + p.z;
@@ -55,7 +55,7 @@ end
 function samples()
    ps = {0.1, 0.2, 0.3, 0.5, 0.8, 1.0, 1.5, 1.8, 2.0, 5.0, 10.0}
    for k, p in pairs(ps) do
-      emit(translate(2 * k, 0, 0) * superquadrics(1.0, p))
+      emit(translate(20 * k, 0, 0) * scale(10) * superquadrics(1.0, p))
    end
 end
 

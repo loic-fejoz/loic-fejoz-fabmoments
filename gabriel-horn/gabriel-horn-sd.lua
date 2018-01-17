@@ -22,32 +22,33 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ]]
 
 
-trompette_ray = implicit(v(-10,-10, 1), v(10,10,10), [[
-#undef SPHERE_TRACING
-#define RAY_MARCHING
-const int iterationsMarching=2000;
-float minDistanceSphereTracing=0.01;
-float inTrompette(vec3 p)
-{
-  vec3 p2 = p * p;
-  return (p2.x + p2.y) * p2.z - 25;
-}
-float distanceEstimator(vec3 p) 
-{
-  return inTrompette(p);
-}
+-- trompette_ray = implicit(v(-10,-10, 1), v(10,10,10), [[
+-- #undef SPHERE_TRACING
+-- #define RAY_MARCHING
+-- const int iterationsMarching=2000;
+-- float minDistanceSphereTracing=0.01;
+-- float inTrompette(vec3 p)
+-- {
+--   vec3 p2 = p * p;
+--   return (p2.x + p2.y) * p2.z - 25;
+-- }
+-- float distanceEstimator(vec3 p) 
+-- {
+--   return inTrompette(p);
+-- }
 
-float evalFunction(vec3 p) 
-{
-  return inTrompette(p);
-}
-]])
+-- float evalFunction(vec3 p) 
+-- {
+--   return inTrompette(p);
+-- }
+-- ]])
+
 
 -- Gabriel's Horn is defined as the implicit surface of revolution of equation r = c / p.z; and r the length in the plane (x,y).
 function horn(c)
    local c2 = 2 * c
    local glsl = [[
-float minDistanceSphereTracing=0.00001;
+//float minDistanceSphereTracing=0.001;
 float inTrompette(vec3 p)
 {
   vec3 p2 = p * p;
@@ -104,6 +105,6 @@ float distanceEstimator(vec3 p)
    return trompette_sphere
 end
 
-emit(horn(5.0))
+--emit(horn(5.0))
 --emit(scale(1) * horn(5.0))
---emit(scale(2) * horn(5.0)) -- This one does not slice because of empty scene!
+emit(scale(2) * horn(5.0)) -- This one does not slice because of empty scene!
