@@ -25,7 +25,6 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 -- See IceSL's forum for the trick to multiply distance by 0.1.
 h = 20
 twisted = implicit(v(-h,-h,0), v(h,h,2*h), [[
-float minDistanceSphereTracing=0.001;
 float distanceEstimator(vec3 ppp)
 {
   precision highp float;
