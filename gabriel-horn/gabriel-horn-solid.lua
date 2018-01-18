@@ -1,7 +1,7 @@
 --[[
 The MIT License (MIT)
 
-Copyright (c) 2015 Loïc Fejoz
+Copyright (c) 2018 Loïc Fejoz
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in
@@ -22,42 +22,25 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ]]
 
 
--- trompette_ray = implicit(v(-10,-10, 1), v(10,10,10), [[
--- #undef SPHERE_TRACING
--- #define RAY_MARCHING
--- const int iterationsMarching=2000;
--- float minDistanceSphereTracing=0.01;
--- float inTrompette(vec3 p)
--- {
---   vec3 p2 = p * p;
---   return (p2.x + p2.y) * p2.z - 25;
--- }
--- float distanceEstimator(vec3 p) 
--- {
---   return inTrompette(p);
--- }
-
--- float evalFunction(vec3 p) 
--- {
---   return inTrompette(p);
--- }
--- ]])
-
-
 -- Gabriel's Horn is defined as the implicit surface of revolution of equation r = c / p.z; and r the length in the plane (x,y).
 function horn(c)
-   glsl = [[
+  glsl = [[
+uniform float c;
 float solid(vec3 p)
 {
-  return length(p.xy) - (<CST_C> / p.z);
+  if (p.z < 1.0) {
+    return 1.0;
+  }
+  return length(p.xy) - (c / p.z);
 }
 ]]
-   glsl = string.gsub(glsl, '<CST_C>', '' .. c)
-   return solid(
+  obj = implicit_solid(
       v(-10, -10, -10),
       v(10,   10,  10),
       0.25,
       glsl)
+  set_uniform_scalar(obj, "c", c)
+  return obj
 end
 
 --emit(horn(5.0))

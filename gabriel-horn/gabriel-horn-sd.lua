@@ -22,48 +22,26 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ]]
 
 
--- trompette_ray = implicit(v(-10,-10, 1), v(10,10,10), [[
--- #undef SPHERE_TRACING
--- #define RAY_MARCHING
--- const int iterationsMarching=2000;
--- float minDistanceSphereTracing=0.01;
--- float inTrompette(vec3 p)
--- {
---   vec3 p2 = p * p;
---   return (p2.x + p2.y) * p2.z - 25;
--- }
--- float distanceEstimator(vec3 p) 
--- {
---   return inTrompette(p);
--- }
-
--- float evalFunction(vec3 p) 
--- {
---   return inTrompette(p);
--- }
--- ]])
-
-
 -- Gabriel's Horn is defined as the implicit surface of revolution of equation r = c / p.z; and r the length in the plane (x,y).
 function horn(c)
    local c2 = 2 * c
    local glsl = [[
-//float minDistanceSphereTracing=0.001;
+uniform float c;
 float inTrompette(vec3 p)
 {
   vec3 p2 = p * p;
-  return (p2.x + p2.y) * p2.z - (<CST_C> * <CST_C>);
+  return (p2.x + p2.y) * p2.z - (c * c);
 }
 
 float distanceEstimator(vec3 p) 
 {
   float p_radius = length(p.xy);
   vec2 cp = vec2(p.z, p_radius);
-  vec2 cq = vec2(p.z, <CST_C> / p.z);
+  vec2 cq = vec2(p.z, c / p.z);
   if (p.z >= 1.0) {
     // Search min distance by dichotomy between projection of p on surface along z axis and point (1.0, c)
     vec2 cq_right = cq;
-    vec2 cq_left = vec2(1.0, <CST_C>);
+    vec2 cq_left = vec2(1.0, c);
     vec2 cq_middle;
     float dist_right = length(cp - cq_right);
     float dist_left = length(cp - cq_left);
@@ -73,7 +51,7 @@ float distanceEstimator(vec3 p)
     do {
       oneMoreStep = false;
       cq_middle.x = (cq_right.x + cq_left.x) / 2.0;
-      cq_middle.y = <CST_C> / cq_middle.x;
+      cq_middle.y = c / cq_middle.x;
       dist_middle = length(cp - cq_middle);
       if (dist_middle < dist) {
         oneMoreStep = (dist - dist_middle) > (minDistanceSphereTracing / 2.0);
@@ -85,26 +63,26 @@ float distanceEstimator(vec3 p)
         }
       }
     } while(oneMoreStep);
-    if (p_radius < <CST_C> / p.z) {
+    if (p_radius < c / p.z) {
       return -0.1 * dist;
     }
     return 0.1 * dist;
   } else {
-    if (p_radius < <CST_C>) {
+    if (p_radius < c) {
       return 0.1 * abs(p.z - 1);
     } else {
-      cq = vec2(1.0, <CST_C>);
+      cq = vec2(1.0, c);
       return 0.1 * length(cp - cq);
     }
   }
 }
 ]]
-   glsl = string.gsub(glsl, '<CST_C>', '' .. c)
    print(glsl)
-   trompette_sphere = implicit(v(-c2,-c2, 1), v(c2,c2,c2), glsl)
+   trompette_sphere = implicit(v(-c2,-c2, 0), v(c2,c2,c2), glsl)
+   set_uniform_scalar(trompette_sphere, "c", c)
    return trompette_sphere
 end
 
 --emit(horn(5.0))
 --emit(scale(1) * horn(5.0))
-emit(scale(2) * horn(5.0)) -- This one does not slice because of empty scene!
+emit(scale(2) * horn(5.0))
