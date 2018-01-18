@@ -25,8 +25,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 -- See IceSL's forum for the trick to multiply distance by 0.1.
 function superquadrics(radius, p)
    glsl = [[
-//float minDistanceSphereTracing=0.001;
-
+uniform float uradius;
+uniform float up;
 float sum3(vec3 p) {
   return p.x + p.y + p.z;
 }
@@ -44,12 +44,13 @@ float quadricsDistance(vec3 pt, float p) {
 
 float distanceEstimator(vec3 pt)
 {
-  return 0.1 * (quadricsDistance(pt,  <CST_P>) -  <CST_RADIUS>);
+  return 0.01 * (quadricsDistance(pt,  up) - uradius);
 }
 ]]
-   glsl = string.gsub(glsl, "<CST_P>", "" .. p)
-   glsl = string.gsub(glsl, "<CST_RADIUS>", "" .. radius)
-   return implicit(v(-radius, -radius, -radius), v(radius, radius, radius), glsl)
+   obj = implicit(v(-radius, -radius, -radius), v(radius, radius, radius), glsl)
+   set_uniform_scalar(obj, "up", p)
+   set_uniform_scalar(obj, "uradius", radius)
+   return obj
 end
 
 function samples()
