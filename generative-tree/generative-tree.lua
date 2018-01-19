@@ -32,12 +32,12 @@ function flip(limit)
    return (math.random() < limit)
 end
 
-function tree(state)
+function tree(state, accShapes)
    local radius = math.sqrt(dot(state.direction, state.direction))
    if (radius < state.min_radius) then
-      return
+      return accShapes
    end
-   emit(translate(state.origin) * sphere(radius), state.brush)
+   table.insert(accShapes, translate(state.origin) * sphere(radius))
    state.origin = state.origin + state.direction
    state.direction = (2/3 + math.random()/3) * state.direction
    local rotation = state.rand_angle(state)
@@ -47,9 +47,9 @@ function tree(state)
       local d = shallowcopy(state)
 --      d.brush = state.brush + 1
       d.direction = rotation * state.direction
-      tree(d)
+      accShapes = tree(d, accShapes)
    end
-   tree(state)
+   return tree(state, accShapes)
 end
 
 -- UI
@@ -69,7 +69,7 @@ branching = ui_scalar('branching', 20, 0, 100) / 100
 max_angle = ui_scalar('max angle', 20, 0, 360)
 
 -- Main
-tree{
+spheres = tree({
    radius=radius,
    branching=branching,
    origin=v(0,0,0),
@@ -78,5 +78,6 @@ tree{
    angle=max_angle,
    rand_angle = rand_angle,
    brush=0
-}
+}, {})
+emit(scale(1.5) * merge(spheres))
 emit(intersection(translate(0, 0, -1.3*radius) * sphere(1.3*radius), box(2*1.3*radius)), 1)
