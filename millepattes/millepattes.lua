@@ -4,7 +4,7 @@ math.randomseed(seed)
 
 head = implicit_distance_field(
 v(-5, -5, -6),
-v(5, 5, 6),
+v(5, 5, 7),
 [[
 float polysmin(float a, float b, float k)
 {
@@ -123,6 +123,31 @@ float distance(vec3 p) {
   float sdMouthHole = sdEllipsoid(pMouth, vec3(4.3, 0, -1.9), vec3(1.8, 2.5, 0.5));
   d = smin(d, sdMouth, 0.1);
   d = smax(d, -sdMouthHole, 0.2);
+  float radiusMouthBorder = 0.8;
+  float sdMouthBorder = sdEllipsoid(
+    pMouth,
+    vec3(1.9, 1.7, -1.9),
+    vec3(radiusMouthBorder,radiusMouthBorder,radiusMouthBorder));
+  d = smin(d, sdMouthBorder, 0.4);
+
+  {
+  vec2 antennaR = sdBezier(p,
+    vec3(0, 1, 3),
+    vec3(0, 1, 5),
+    vec3(3, 2, 5));
+  float tr = 0.5 + 0.1*antennaR.y;
+  float d3 = antennaR.x - tr;
+  d = smin(d, d3, 0.1);
+  }
+{
+  vec2 antennaL = sdBezier(p,
+    vec3(0, -1, 3),
+    vec3(0, -1, 5.5),
+    vec3(3, -2.5, 5.5));
+  float tr = 0.5 + 0.15*antennaL.y;
+  float d3 = antennaL.x - tr;
+  d = smin(d, d3, 0.05);
+  }
   return d;
 }
 ]])
