@@ -105,6 +105,12 @@ mat3 base( in vec3 ww )
                 uu.z,ww.z,vv.z);
 }
 
+const mat3 footRot = inverse(
+    mat3(
+        1, 0, 0,
+        0, cos(radians(-30)), -sin(radians(-30)),
+        0, sin(radians(-30)), cos(radians(-30))));
+
 
 float distance(vec3 p) {
   vec3 pSym = vec3(p.x, abs(p.y), p.z); // plan(x,z) symmetry
@@ -147,15 +153,22 @@ float distance(vec3 p) {
   float d3 = antennaL.x - tr;
   d = smin(d, d3, 0.05);
   }
-  int nb = 8;
+  int nb = 6;
   float ratio = nb/(2*3.1415);
   for(int i=1; i < nb; ++i) {
-    vec3 center = vec3(2.5-2*3.1 * i, 0, -6 + mod(i, 2));
-    float localSd = sdSphere(p, center, 3.6);
+    vec3 center = vec3(2.5-2*3.1 * i, 0, -6 + mod(i+1, 2));
+    float localSd = sdSphere(pSym, center, 3.6);
     d = smin(d, localSd, 1.8);
+
+    vec3 footCenter = center + vec3(0, 3, -3);
+    float sdFoot = sdEllipsoid(
+        footRot * (pSym-footCenter),
+        vec3(0, 0, 0),
+        vec3(1.2, 1, 1.6));
+    d = min(d, sdFoot);
   }
 
   return d;
 }
 ]])
-emit(millepattes)
+emit(scale(2.5) * millepattes)
