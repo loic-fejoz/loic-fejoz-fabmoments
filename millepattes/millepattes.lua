@@ -1,10 +1,9 @@
-seed = ui_scalar('seed', 1, 1, 1024)
-math.randomseed(seed)
---emit(box(10))
+-- seed = ui_scalar('seed', 1, 1, 1024)
+-- math.randomseed(seed)
 
-head = implicit_distance_field(
-v(-5, -5, -6),
-v(5, 5, 7),
+millepattes = implicit_distance_field(
+v(-60, -5, -40),
+v(25, 5, 7),
 [[
 float polysmin(float a, float b, float k)
 {
@@ -148,7 +147,15 @@ float distance(vec3 p) {
   float d3 = antennaL.x - tr;
   d = smin(d, d3, 0.05);
   }
+  int nb = 8;
+  float ratio = nb/(2*3.1415);
+  for(int i=1; i < nb; ++i) {
+    vec3 center = vec3(2.5-2*3.1 * i, 0, -6 + mod(i, 2));
+    float localSd = sdSphere(p, center, 3.6);
+    d = smin(d, localSd, 1.8);
+  }
+
   return d;
 }
 ]])
-emit(head)
+emit(millepattes)
