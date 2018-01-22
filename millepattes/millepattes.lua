@@ -1,5 +1,6 @@
--- seed = ui_scalar('seed', 1, 1, 1024)
--- math.randomseed(seed)
+--[[
+Copyright (c) 2018 Loïc Fejoz
+]]
 
 millepattes = implicit_distance_field(
 v(-60, -5, -40),
