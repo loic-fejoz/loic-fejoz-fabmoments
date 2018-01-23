@@ -5,6 +5,7 @@ A repositories of various thing, [I](http://www.fejoz.net) am building.
 I am also on twitter [@loic_fejoz](https://twitter.com/loic_fejoz).
 
 
+* [millepattes](millepattes), a 3D model of a centipede based on procedural implicit distance functions
 * [flocons](flocons), simple paper cut of snow flakes.
 * [castle](castle), a simple procedural modeling of castle with random stones, and a slight warp shader within IceSL.
 * [Couillard](couillard), a kind of trebuchet.
@@ -15,6 +16,7 @@ I am also on twitter [@loic_fejoz](https://twitter.com/loic_fejoz).
 * [Tin Whisthle](tinwhistle)
 * See also [my work on our FabLab's wiki](http://wiki.nybi.cc/index.php/Utilisateur:Loic.fejoz)
 
+<a href="millepattes" title="Centipede"><img src="millepattes/shot0002.jpg" height="150px" /></a>
 <a href="flocons" title=""><img src="flocons/flocons-thumbnail.jpg" height="150px" /></a>
 <a href="castle" title=""><img src="castle/20160206_0016-100x89.jpg" height="150px" /></a>
 <a href="dolphin" title="a model designed in less than 10mn with FabInPocket"><img src="dolphin/3d-printed-dolphin.jpg" width="200px" /></a>
