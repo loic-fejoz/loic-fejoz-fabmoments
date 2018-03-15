@@ -63,7 +63,7 @@ end
 seed = ui_scalar('seed', 1, 1, 1024)
 math.randomseed(seed)
 
-radius = ui_scalar('radius', 5, 10, 100)
+radius = ui_scalar('radius', 10, 5, 100)
 min_radius = ui_scalar('min radius', 1, 0, 100)
 branching = ui_scalar('branching', 20, 0, 100) / 100
 max_angle = ui_scalar('max angle', 20, 0, 360)
