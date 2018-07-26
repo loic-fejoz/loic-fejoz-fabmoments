@@ -35,6 +35,7 @@ Gallery
 ![Original Bear by christophecaran is licensed under the Creative Commons - Attribution - Non-Commercial license](shot0000.png?raw=true)
 ![Coarse-Slices of the bear with sticks](shot0001.png?raw=true)
 ![Ready to cut slices](shot0002.png?raw=true)
+![Final Bear result](20180726_095708.jpg?raw=true)
 ![SVG for 2.5mm board thickness and 1.9mm sticks](ours-laser-2.5mm.svg?raw=true)
 ![SVG for 3mm board thickness and 1.9mm sticks](ours-laser-3mm.svg?raw=true)
 ![Original Minion Dave by Poh is licensed under the GNU - GPL license](shot0003.png?raw=true)
