@@ -39,3 +39,5 @@ Gallery
 ![SVG for 2.5mm board thickness and 1.9mm sticks](ours-laser-2.5mm.svg?raw=true)
 ![SVG for 3mm board thickness and 1.9mm sticks](ours-laser-3mm.svg?raw=true)
 ![Original Minion Dave by Poh is licensed under the GNU - GPL license](shot0003.png?raw=true)
+![](shot0005.png?raw=true)
+![](shot0004.png?raw=true)
