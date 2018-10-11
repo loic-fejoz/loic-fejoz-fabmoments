@@ -23,7 +23,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 local centers = {}
 
 local n = 6
-local m = 0
+local m = 6
 local height = 8 -- #lines
 local armlength = 15 -- distance between spheres
 local display_flat=false
@@ -45,6 +45,7 @@ local y0 = height/2 * linespace--rotate(0, 0, 120) * ((height + ((height+2) % 2)
 --emit(cone(2, 1, v(0,0,0), y0), 1)
 
 local ch = n * a1 + m * a2
+local ch4closing = ch + a1 -- Trick here to get a closed tube
 local ch_angle = acos(dot(v(1, 0, 0), normalize(ch)))
 --emit(cone(2, 1, v(0,0,0), ch), 2)
 local y1 = rotate(0, 0, -ch_angle) * y0
@@ -54,6 +55,8 @@ local s1 = ch + y1
 
 local ch_length = length(ch) + epsilon
 local ch_length_pow2 = ch_length * ch_length
+local ch4closing_length = length(ch4closing) + epsilon
+local ch4closing_length_pow2 = ch4closing_length* ch4closing_length
 local y1_length = length(y1) + epsilon
 local y1_length_pow2 = y1_length * y1_length
 
@@ -84,7 +87,7 @@ for row=min_row,max_row do
       local theta = 360 * p_prime.x / ch_length
       local p_second = v(R * cos(theta), R * sin(theta), p_prime.y)
       -- Track centers in a grid like system
-      if dot(ch, p) >= 0 and dot(y1, p) >= 0 and dot(ch, p) <= ch_length_pow2 and dot(y1, p) <= y1_length_pow2 then
+      if dot(ch4closing, p) >= 0 and dot(y1, p) >= 0 and dot(ch4closing, p) <= ch4closing_length_pow2 and dot(y1, p) <= y1_length_pow2 then
 	 local final_point
 	 if display_flat then
 	    final_point = p
