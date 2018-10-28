@@ -5,6 +5,7 @@ A repositories of various thing, [I](http://www.fejoz.net) am building.
 I am also on twitter [@loic_fejoz](https://twitter.com/loic_fejoz).
 
 
+* [Knight helmet](casque-chevalier), A laser-cut 2D knight helmet.
 * [carbon nanotube](carbon-nanotube), A model of a Carbon nanotube.
 * [lithophane](lithophane), an image 3D printed in very thin translucent way, that can been seen only with light source behind.
 * [millepattes](millepattes), a 3D model of a centipede based on procedural implicit distance functions
@@ -18,6 +19,7 @@ I am also on twitter [@loic_fejoz](https://twitter.com/loic_fejoz).
 * [Tin Whisthle](tinwhistle)
 * See also [my work on our FabLab's wiki](http://wiki.nybi.cc/index.php/Utilisateur:Loic.fejoz)
 
+<a href="casque-chevalier" title="Knight helmet"><img src="casque-chevalier/20181021_131353.jpg" height="150px" /></a>
 <a href="carbon-nanotube" title="Carbon nanotube"><img src="carbon-nanotube/config-10-0.png" height="150px" /></a>
 <a href="lithophane" title="Lithophane"><img src="lithophane/20180204_194724.jpg" height="150px" /></a>
 <a href="millepattes" title="Centipede"><img src="millepattes/shot0002.jpg" height="150px" /></a>
