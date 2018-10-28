@@ -4,7 +4,7 @@ FabMoments of Loïc Fejoz
 A repositories of various thing, [I](http://www.fejoz.net) am building.
 I am also on twitter [@loic_fejoz](https://twitter.com/loic_fejoz).
 
-* [Calavera](Calavera), A cavalera is a skull for Halloween.
+* [Calavera](calavera), A cavalera is a skull for Halloween.
 * [Knight helmet](casque-chevalier), A laser-cut 2D knight helmet.
 * [carbon nanotube](carbon-nanotube), A model of a Carbon nanotube.
 * [lithophane](lithophane), an image 3D printed in very thin translucent way, that can been seen only with light source behind.
