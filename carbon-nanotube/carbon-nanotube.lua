@@ -22,13 +22,15 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ]]
 local centers = {}
 
-local n = 6
-local m = 6
+local n = 10
+local m = 0
 local height = 8 -- #lines
 local armlength = 15 -- distance between spheres
-local display_flat=false
 local epsilon = 0.01
+local sphere_size = 6
+local link_size = 3
 
+local display_flat=false
 
 local dir0 = v(armlength * cos(-30), armlength * sin(-30), 0)
 --emit(cone(2, 1, v(0,0,0), dir0), 7)
@@ -106,7 +108,7 @@ end
 
 function join(c0, c1)
    if c0 ~= nil and c1 ~= nil then
-      emit(cone(1, 1, c0, c1))
+      emit(cone(link_size, link_size, c0, c1))
    end
 end
 
@@ -118,7 +120,7 @@ for row=min_row,max_row do
       local c3 = centers[math.pow(10, 1 + row - min_row +1) + i+1]
 
       if c0 ~= nil then
-	 emit(translate(c0) * sphere(4), i)
+	 emit(translate(c0) * sphere(sphere_size), i)
 	 join(c0, c1)
 	 if i % 2 == 0 then
 	    join(c0, c3)

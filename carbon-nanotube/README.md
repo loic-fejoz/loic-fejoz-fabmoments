@@ -21,6 +21,8 @@ License
 
 STL, PNG and Photos are under the [Creative Commons Attribution 3.0 France](https://creativecommons.org/licenses/by/3.0/fr/) (CC BY 3.0 FR - Loïc Fejoz).
 
+[First image](https://pbs.twimg.com/media/DpAuh4pW0AAwR-1.jpg:large) is of unknown license.
+
 IceSL Models are under the [MIT License](http://opensource.org/licenses/MIT).
 
 Gallery
