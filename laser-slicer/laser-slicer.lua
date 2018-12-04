@@ -29,7 +29,7 @@ function laserslicer.defaultCfg(the_mesh, cut_or_display)
    cfg.board = {}
    cfg.board.height = 1
    cfg.stick = {}
-   cfg.stick.diameter = 2
+   cfg.stick.diameter = 2.1
    cfg.stick.show = true and not cfg.cut
    cfg.stick.shape = nil
    cfg.spaces = {}
