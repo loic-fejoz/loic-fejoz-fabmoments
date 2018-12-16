@@ -22,15 +22,16 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ]]
 local centers = {}
 
-local n = 10
+local n = 5
 local m = 0
-local height = 8 -- #lines
-local armlength = 15 -- distance between spheres
+local height = 7 -- #lines
+local armlength = 10 -- distance between spheres
 local epsilon = 0.01
-local sphere_size = 6
-local link_size = 3
+local sphere_size = 4
+local link_size = 2
 
-local display_flat=false
+local display_flat= false
+local for_display = true
 
 local dir0 = v(armlength * cos(-30), armlength * sin(-30), 0)
 --emit(cone(2, 1, v(0,0,0), dir0), 7)
@@ -89,7 +90,7 @@ for row=min_row,max_row do
       local theta = 360 * p_prime.x / ch_length
       local p_second = v(R * cos(theta), R * sin(theta), p_prime.y)
       -- Track centers in a grid like system
-      if dot(ch4closing, p) >= 0 and dot(y1, p) >= 0 and dot(ch4closing, p) <= ch4closing_length_pow2 and dot(y1, p) <= y1_length_pow2 then
+      if dot(ch4closing, p) > 0 and dot(y1, p) > 0 and dot(ch4closing, p) <= ch4closing_length_pow2 and dot(y1, p) <= y1_length_pow2 then
 	 local final_point
 	 if display_flat then
 	    final_point = p
@@ -106,9 +107,19 @@ end
 
 --emit(ccube(3)) -- display the origin
 
+local parts = {}
+
+function my_emit(a_part, a_brush)
+   if (for_display) then
+      emit(a_part, a_brush)
+   else
+      table.insert(parts, a_part)
+   end
+end
+
 function join(c0, c1)
    if c0 ~= nil and c1 ~= nil then
-      emit(cone(link_size, link_size, c0, c1))
+      my_emit(cone(link_size, link_size, c0, c1), 0)
    end
 end
 
@@ -120,11 +131,15 @@ for row=min_row,max_row do
       local c3 = centers[math.pow(10, 1 + row - min_row +1) + i+1]
 
       if c0 ~= nil then
-	 emit(translate(c0) * sphere(sphere_size), i)
+	 my_emit(translate(c0) * sphere(sphere_size), i)
 	 join(c0, c1)
 	 if i % 2 == 0 then
 	    join(c0, c3)
 	 end
       end
    end
+end
+
+if not for_display then
+   emit(scale(1, 1, -1) * union(parts))
 end
