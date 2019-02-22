@@ -17,6 +17,13 @@ IceSL Models are under the [MIT License](http://opensource.org/licenses/MIT).
 
 ## Gallery
 
+### Involute of circle
+
+The [involute of a circle](https://en.wikipedia.org/wiki/Involute) [defined as
+an](involute.lua) ```implicit_solid```.
+
+![](involute.jpg?raw=true)
+
 ### Pythagoras Tree
 
 The classical Fractal / L-system [Pythagoras Tree](http://en.wikipedia.org/wiki/L-system#Example_2:_Pythagoras_Tree) defined recursively.
