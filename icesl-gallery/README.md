@@ -20,7 +20,7 @@ IceSL Models are under the [MIT License](http://opensource.org/licenses/MIT).
 ### Involute of circle
 
 The [involute of a circle](https://en.wikipedia.org/wiki/Involute) [defined as
-an](involute.lua) ```implicit_solid```.
+an](involute.lua) ```implicit_distance_field```.
 
 ![](involute.jpg?raw=true)
 
