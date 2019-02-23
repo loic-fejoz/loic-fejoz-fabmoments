@@ -24,6 +24,14 @@ an](involute.lua) ```implicit_distance_field```.
 
 ![](involute.jpg?raw=true)
 
+## Signed Distance Function of a gear
+
+[A gear](gear.lua?raw=true) fully defined as a [signed distance function](http://www.iquilezles.org/www/articles/distfunctions/distfunctions.htm), ie with an ```implicit_distance_field```.
+
+NB: Still an on-going work as some maths are still required to be investigated.
+
+![](gear.jpg)
+
 ### Pythagoras Tree
 
 The classical Fractal / L-system [Pythagoras Tree](http://en.wikipedia.org/wiki/L-system#Example_2:_Pythagoras_Tree) defined recursively.

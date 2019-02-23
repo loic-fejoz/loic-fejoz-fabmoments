@@ -78,7 +78,7 @@ function gear_solid(params)
 
 	-- Root diameter: Diameter of bottom of tooth spaces.
 	root_radius = pitch_radius-dedendum;
-	print("Root radius:" .. root_radius)
+	print("Root radius:" .. root_radius .. " (" .. (root_radius-base_radius)..")")
 	backlash_angle = backlash / pitch_radius * 180 / math.pi;
 	print("Backlash angle:"..backlash_angle)
 	half_thick_angle = (360 / number_of_teeth - backlash_angle) / 4;
@@ -103,7 +103,7 @@ uniform float z = 16;
 uniform float r_outside = 20;
 uniform float r_root = 15;
 
-uniform float delta_involute = 0.5;
+uniform float delta_involute = 0.0;
 
 float involute_solid(vec3 p) {
 
@@ -132,19 +132,19 @@ float distance(vec3 p) {
 ]])
 	set_uniform_scalar(gear, 'r', base_radius)
 	set_uniform_scalar(gear, 'r_outside',outer_radius)
-	set_uniform_scalar(gear, 'r_root',root_radius)
+	set_uniform_scalar(gear, 'r_root', math.max(root_radius, base_radius))
 	set_uniform_scalar(gear, 'z', number_of_teeth)
-	--set_uniform_scalar(gear, 'delta_involute', ???)
+	set_uniform_scalar(gear, 'delta_involute', math.pi/2 - 0.042 * number_of_teeth) -- 0.042 is still blakc magic and shall depend on circular_pitch
 	return gear
 end
 
 
-local params = {number_of_teeth=20,circular_pitch=300,flat=true}
+local params = {number_of_teeth=24,circular_pitch=400,flat=true}
 
 local b_solid = gear_solid(params)
 emit(b_solid,2)
 
 
 dofile("C:\\Users\\lfejoz\\AppData\\Roaming\\IceSL\\icesl-models\\libs\\gear.lua")
-local b = rotate(0,0, 180 / params.number_of_teeth) * gear(params)
-emit(b,3)
+local b = translate(0,0,-5) * rotate(0,0, 180 / params.number_of_teeth) * gear(params)
+--emit(b,3)
