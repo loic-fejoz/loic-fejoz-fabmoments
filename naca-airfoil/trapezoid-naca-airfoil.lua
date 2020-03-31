@@ -20,7 +20,7 @@ COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ]]
-local implicit_precision = 0.1
+local implicit_precision = 0.2
 
 function trapezoid_symmetrical_naca_airfoil(cfg)
    if cfg.thickness == nil then
@@ -36,14 +36,16 @@ function trapezoid_symmetrical_naca_airfoil(cfg)
    end
    local airfoil = implicit_solid(
       v(0, -cfg.thickness/2, 0),
-      v(cfg.chord_length, cfg.thickness/2, cfg.length),
+      v(cfg.sweep + cfg.length, cfg.thickness/2, cfg.height),
       implicit_precision,
 [[
-uniform float t = 0.12;
-uniform float chord_length = 40;
+uniform highp float t = 0.12;
+uniform highp float chord_length = 40.0;
+uniform highp float sweep_coeff = 0.0;
+uniform highp float chord_coeff = 0.0;
 highp float solid(vec3 p) {
-        highp float c = chord_length - 0.5*p.z;
-        highp float x = (p.x - 0.4 * p.z);
+        highp float c = chord_length - chord_coeff*p.z;
+        highp float x = p.x - sweep_coeff * p.z;
         // This avoid some numerical instabilities
         if (x < 0 || x > c) {
           return 1;
@@ -54,16 +56,57 @@ highp float solid(vec3 p) {
 }
 ]])
    set_uniform_scalar(airfoil, 't', cfg.thickness)
-   set_uniform_scalar(airfoil, 'chord_length', cfg.chord_length)
+   set_uniform_scalar(airfoil, 'chord_length', cfg.root_chord)
+   set_uniform_scalar(airfoil, 'sweep_coeff', cfg.sweep/cfg.height)
+   set_uniform_scalar(airfoil, 'chord_coeff', (cfg.root_chord - cfg.tip_chord)/cfg.height)
    return airfoil
 end
 
 local chord_length = ui_number('chord length (mm)', 50, 10, 200)
+local root_chord = ui_number('root chord (mm)', 58, 10, 200)
+local sweep = ui_number('sweep (mm)', 81, 0, 200)
+local tip_chord = ui_number('tip chord (mm)', 30, 0, 200)
 local thickness = ui_scalar('max thickness (mm)', 2, 0, 10)
+local fin_height = ui_number('height (mm)', 38, 1, 100)
 local cfg = {
-	chord_length = chord_length,
-	thickness =thickness,
-	length = 50,
+   chord_length = chord_length,
+   fin_count = 1,
+	
+    cant_angle = 0.017453292519943295,
+    fillet_radius = 0.0,
+    cross_section = 'AIRFOIL',
+    tab_points = {},
+    root_points = {v(0.0, 0.0, 0.0),v(57.99999999999999, 0.0, 0.0),},
+    body_radius = 0,
+    length = 58.000000000000014,
+    position = v(0.0, 0.0, 0.0),
+    axial_offset = 0.0,
+    tip_chord = tip_chord,
+    sweep = sweep,
+    height = fin_height,
+    root_chord = root_chord,
+    position = v(0.0, 0.0, 0.0),
+    thickness = thickness,
+    fin_points = {
+       v(0.0, 0.0, 0.0),
+       v(sweep, fin_height, 0.0),
+       v(sweep+tip_chord, fin_height, 0.0),
+       v(root_chord, 0.0, 0.0),
+    },
 }
 emit(trapezoid_symmetrical_naca_airfoil(cfg))
 print("NACA Profile " .. cfg.naca_serie)
+
+function TrapezoidFinSet(cfg)
+   fins = {}
+   for i=1,cfg.fin_count do
+      local a_fin = translate(0, cfg.body_radius, -cfg.thickness/2) * linear_extrude(v(0, 0, cfg.thickness), cfg.fin_points)
+      table.insert(fins, rotate((i * 360)/cfg.fin_count, 0, 0) * a_fin)
+   end
+   return translate(cfg.position) * union(fins)
+end
+
+local do_display_ref = ui_number('do display square fin', 0, 0, 1)
+if do_display_ref > 0.5 then
+   emit(rotate(90, 0, 0) * TrapezoidFinSet(cfg), 2)
+end
