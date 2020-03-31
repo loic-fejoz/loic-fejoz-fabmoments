@@ -5,7 +5,7 @@ Along with [my fork of OpenRocket](https://github.com/loic-fejoz/openrocket/tree
 
 The fun part is the modeling of the different kind of ogive with `implicit_solid`. The modeling of the [NACA airfoil](../naca-airfoil) was interesting too.
 
-Also I believe that the generated STL might be used for finite-element simulation in order to compute drag.
+Also I believe that the [generated STL](test-marching-0_2.stl) might be used for finite-element simulation in order to compute drag.
 
 ![A screenshot of OpenRocket used to design the rocket](shot0002.png)
 
