@@ -53,21 +53,21 @@ highp float solid(vec3 p) {
           return 1;
         }
         highp float xc = x / c;
-        highp float sdf = t / 0.2 *(0.2969 * sqrt(xc) - 0.1260 * xc - 0.3516 * pow(xc, 2) + 0.2843 * pow(xc, 3) - 0.1015 * pow(xc, 4));
-        sdf = abs(p.y) - sdf;
+        highp float profile_radius = t / 0.2 *(0.2969 * sqrt(xc) - 0.1260 * xc - 0.3516 * pow(xc, 2) + 0.2843 * pow(xc, 3) - 0.1015 * pow(xc, 4));
+        highp float sdf = abs(p.y) - profile_radius;
         highp float profile_sdf = abs(sdf + wall_thickness) - wall_thickness;
 
         // Now compute structures
         highp float s1 = mod(p.x + p.z, dist) - wall_thickness;
         highp float s2 = mod(-p.x + p.z, dist) - wall_thickness;
         highp float s = min(s1, s2);
-        //vec3 q = mod(p+0.5*dist, dist/2)-0.5*dist;
+        //vec3 q = mod(p+0.5*dist, dist/2)-0.25*dist;
         vec3 q;
-        q.y = mod(p.y+0.25*dist,dist/2)-0.25*dist;
-        q.x = mod(p.x+0.5*dist,dist/2)-0.25*dist;
-        q.z = mod(p.z+0.5*dist,dist/2)-0.25*dist;
-        highp float void_structures = length(q)- dist/5;
+        q.xz = mod(p.xz+0.5*dist,dist/2)-0.25*dist;
+        q.y = mod(p.y+0.25*dist,dist)-0.25*dist;
+        highp float void_structures = length(q)- 0.8*profile_radius;
         s = max(-void_structures,max(sdf, s)); // void structures
+        //return s;
         return min(max(sdf, s), profile_sdf);
 }
 ]])
