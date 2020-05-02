@@ -15,6 +15,12 @@ The goal is to understand what it takes to generate a trapezoid NACA Airfoil as 
 Here is a 50mm chord length, 2mm thick, NACA 0004 airfoil:
 ![50mm chord length 0004 airfoil and its comparison to rounded and square airfoil](shot0003.png)
 
+## Internal structures
+
+Following [a discussion on the IceSL forum](https://groups.google.com/forum/?utm_medium=email&utm_source=footer#!topic/icesl/ThOFP15VhO0), there is a trial at providing internal structures suitable for RC planes model.
+
+![](shot0007.png)
+
 ## Source
 
 Download the [IceSL source or fork on github](https://github.com/loic-fejoz/loic-fejoz-fabmoments/tree/master/naca-airfoil).
